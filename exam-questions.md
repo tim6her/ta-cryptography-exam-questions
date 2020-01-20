@@ -85,6 +85,44 @@ The cryptosystem is
 *  **public-key** if $d$ cannot be derived from $e$ in a computationally
    feasible way
 
----
+## Cover time
+
+**Cover time** = the time for which a plaintext must be kept secret.
+
+# Attacks on encryption algorithms
+
+> Main attacks on encryption algorithms. Passive versus active attacks.
+> Keys: length, size. Brute-force attack: assumptions, estimates on key lengths.
+
+## Targets of attacks
+
+*  A practical method of determining the **decryption key** is found.
+*  A weakness in the encryption algorithm leads to a **plaintext**.
+
+## Passive vs active attacks
+
+*  The main type of **passive attack** is unauthorised access to data.
+*  An **active attack** involves either data being changed in some way, or a
+   process being conducted on the data.
+
+## Key lengths and sizes
+
+*  **Length** of the key = number of bites it takes to represent the key
+*  **Size** of the keyspace = number of possible different decryption keys
+
+## Assumptions
+
+*  All keys from the keyspace are equally likely to be selected
+*  The correct decryption key is identified as soon as it is tested
+
+## Estimates on key length
+
+If Size = $n = 2k$, then, on average, one needs $∼ 2k − 1$ attempts to find the
+correct decryption key:
+
+$$\mathbb{E}[X] = \sum_{i = 1}^n i \frac{1}{n} =
+   \frac{n \; (n - 1)}{2} = \frac{2^k + 1}{2} ∼ 2^{k - 1}$$
+
+. . .
 
 ## References
