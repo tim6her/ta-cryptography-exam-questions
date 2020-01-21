@@ -123,6 +123,140 @@ correct decryption key:
 $$\mathbb{E}[X] = \sum_{i = 1}^n i \frac{1}{n} =
    \frac{n \; (n - 1)}{2} = \frac{2^k + 1}{2} ∼ 2^{k - 1}$$
 
-. . .
+
+# Examples of symmetric cryptosystems
+
+> Examples of symmetric cryptosystems: Caesar and Substitution ciphers. The
+> letter frequency analysis. Monoalphabetic and polyalphabetic cyphers.
+> Vigenère cipher. If the given key of a Vigenère Cipher has repeated letters,
+> does it make it any easier to break?
+
+# Computational complexity
+
+> Computational complexity of basic mathematical operations and of the
+> exhaustive key search attack. Complexity classes of algorithms.
+
+# Three types of security
+
+> Three types of security. Perfect secrecy: definition, examples, equivalent
+> formulations (with proof). Perfect secrecy: Shannon’s Theorem (with proof).
+
+# RSA cryptosystem
+
+> RSA cryptosystem: definition, examples, correctness (encryption and decryption
+> are inverse operations). Parameter generation, its complexity. Main attacks.
+
+# One-way functions
+
+> One-way function, with trapdoor. Theorem: RSA keys vs Factoring (formulation
+> and sketch of proof).
+
+# Hash functions
+
+> Hash function: definition, types of resistance, (non)-examples. Optimal
+> asymmetric encryption padding.
+
+# Discrete logarithm problem
+
+> Discrete logarithm problem. The DLP assumption. The DLP in (Z/(p-1)Z, +) Is
+> breaking the ECC cryptosystem equivalent to solving the DLP?
+
+# ElGamal cryptosystem
+
+> ElGamal cryptosystem and parameter generation: definition, correctness
+> (encryption and decryption are inverse operations). Theorem: ElGamal keys
+>  versus DLP (with proof).
+
+# Elliptic curves
+
+> Elliptic curve: definition, singularities, normal forms, tangents.
+> Theorem: intersection of E with a projective line (with proof).
+
+# Group structure on elliptic curves
+
+> Group structure on the elliptic curve over the algebraic closure,
+> geometrically: definition and theorem (with proof).
+
+# Cayley-Bacharach’s theorem
+
+> Cayley-Bacharach’s theorem (with proof).
+
+# Associativity
+
+> Associativity (sketch of proof).
+
+# Elliptic curves over finite fields
+
+> Elliptic curves over finite fields: theorems (without proof) and examples.
+> Check that for a prime q, each natural number in the Hasse interval occurs as
+> the order of the el@liptic curve group over the field of q elements.
+
+# Diffie-Hellman key agreement protocol
+
+> Diffie-Hellman key agreement: protocol, attacks. The DHP problem. The ECDHE.
+
+# Digital signature scheme
+
+> Digital Signature Scheme. RSA signature algorithm. Attacks: definitions and
+> examples.
+
+# DSS with hashing
+
+> DSS with hashing. Hash functions from block ciphers: definition and example,
+> with proof (the example where $(x, y) → a^x b^y$).
+
+# DSS and Public-key cryptosystems
+
+> DSS and Public-key cryptosystem: sign-then-encrypt versus encrypt-versus-sign.
+
+# ElGamal variant of DSS (Definition)
+
+> ElGamal variant of DSS: definition and correctness. Security assumptions.
+> Example of misuse (with proof).
+
+# ElGamal variant of DSS (Misuse)
+
+> ElGamal variant of DSS: example of misuse (with proof). ECDSA: definition and
+> correctness.
+
+# Digital currency
+
+> Digital currency: definition and security requirements. Distributed
+> ledgers. Blockchain. Security assumptions underlying the generation of the
+> bitcoin address.
+
+# Bitcoin transactions
+
+> Bitcoin transaction and its verification. Merkle tree. Bitcoin mining.
+
+# Bit generators
+
+> Bit generator. Linear feedback shift register: definition, periods, security.
+> RSA bit generator.
+
+# Distinguisher and next bit predictors
+
+> Distinguisher. Next bit predictor. Yao’s theorem (sketch of proof).
+
+# Error-correcting codes and expander graphs
+
+> Error-correcting codes and expander graphs
+
+# Probabilistic pidgeonhole principle
+
+> Describe the probabilistic pidgeonhole principle and explain, with examples,
+> why it is relevant in cryptography (i.e hash functions, birthday paradox etc).
+
+# Attacks on cryptosystems relying on structural weaknesses
+
+> Describe a variety of attacks that rely on structural weaknesses in respective
+> cryptosystems (for instance, known message attacks for multiplicative systems,
+> or weaknesses of El Gamal under weak random choices).
+
+# Shanks algorithm
+
+> Describe Shanks algorithm, give examples of its use and outline how to use
+> Shanks Algorithm to compute the order of an elliptic curve of prime order in
+> combination with Hasse’s bound.
 
 ## References

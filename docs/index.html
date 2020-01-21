@@ -74,6 +74,35 @@
                                                         <li><a href="#key-lengths-and-sizes"><span class="toc-section-number">2.3</span> Key lengths and sizes</a></li>
                                                         <li><a href="#assumptions"><span class="toc-section-number">2.4</span> Assumptions</a></li>
                                                         <li><a href="#estimates-on-key-length"><span class="toc-section-number">2.5</span> Estimates on key length</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#examples-of-symmetric-cryptosystems"><span class="toc-section-number">3</span> Examples of symmetric cryptosystems</a></li>
+                                                        <li><a href="#computational-complexity"><span class="toc-section-number">4</span> Computational complexity</a></li>
+                                                        <li><a href="#three-types-of-security"><span class="toc-section-number">5</span> Three types of security</a></li>
+                                                        <li><a href="#rsa-cryptosystem"><span class="toc-section-number">6</span> RSA cryptosystem</a></li>
+                                                        <li><a href="#one-way-functions"><span class="toc-section-number">7</span> One-way functions</a></li>
+                                                        <li><a href="#hash-functions"><span class="toc-section-number">8</span> Hash functions</a></li>
+                                                        <li><a href="#discrete-logarithm-problem"><span class="toc-section-number">9</span> Discrete logarithm problem</a></li>
+                                                        <li><a href="#elgamal-cryptosystem"><span class="toc-section-number">10</span> ElGamal cryptosystem</a></li>
+                                                        <li><a href="#elliptic-curves"><span class="toc-section-number">11</span> Elliptic curves</a></li>
+                                                        <li><a href="#group-structure-on-elliptic-curves"><span class="toc-section-number">12</span> Group structure on elliptic curves</a></li>
+                                                        <li><a href="#cayley-bacharachs-theorem"><span class="toc-section-number">13</span> Cayley-Bacharach’s theorem</a></li>
+                                                        <li><a href="#associativity"><span class="toc-section-number">14</span> Associativity</a></li>
+                                                        <li><a href="#elliptic-curves-over-finite-fields"><span class="toc-section-number">15</span> Elliptic curves over finite fields</a></li>
+                                                        <li><a href="#diffie-hellman-key-agreement-protocol"><span class="toc-section-number">16</span> Diffie-Hellman key agreement protocol</a></li>
+                                                        <li><a href="#digital-signature-scheme"><span class="toc-section-number">17</span> Digital signature scheme</a></li>
+                                                        <li><a href="#dss-with-hashing"><span class="toc-section-number">18</span> DSS with hashing</a></li>
+                                                        <li><a href="#dss-and-public-key-cryptosystems"><span class="toc-section-number">19</span> DSS and Public-key cryptosystems</a></li>
+                                                        <li><a href="#elgamal-variant-of-dss-definition"><span class="toc-section-number">20</span> ElGamal variant of DSS (Definition)</a></li>
+                                                        <li><a href="#elgamal-variant-of-dss-misuse"><span class="toc-section-number">21</span> ElGamal variant of DSS (Misuse)</a></li>
+                                                        <li><a href="#digital-currency"><span class="toc-section-number">22</span> Digital currency</a></li>
+                                                        <li><a href="#bitcoin-transactions"><span class="toc-section-number">23</span> Bitcoin transactions</a></li>
+                                                        <li><a href="#bit-generators"><span class="toc-section-number">24</span> Bit generators</a></li>
+                                                        <li><a href="#distinguisher-and-next-bit-predictors"><span class="toc-section-number">25</span> Distinguisher and next bit predictors</a></li>
+                                                        <li><a href="#error-correcting-codes-and-expander-graphs"><span class="toc-section-number">26</span> Error-correcting codes and expander graphs</a></li>
+                                                        <li><a href="#probabilistic-pidgeonhole-principle"><span class="toc-section-number">27</span> Probabilistic pidgeonhole principle</a></li>
+                                                        <li><a href="#attacks-on-cryptosystems-relying-on-structural-weaknesses"><span class="toc-section-number">28</span> Attacks on cryptosystems relying on structural weaknesses</a></li>
+                                                        <li><a href="#shanks-algorithm"><span class="toc-section-number">29</span> Shanks algorithm</a>
+                                                        <ul>
                                                         <li><a href="#references">References</a></li>
                                                         </ul></li>
                                                         </ul>
@@ -197,6 +226,114 @@
 <p>If Size = <span class="math inline">n = 2k</span>, then, on average, one needs <span class="math inline">∼ 2k − 1</span> attempts to find the correct decryption key:</p>
 <p><span class="math display">\mathbb{E}[X] = \sum_{i = 1}^n i \frac{1}{n} =
    \frac{n \; (n - 1)}{2} = \frac{2^k + 1}{2} ∼ 2^{k - 1}</span></p>
+<h1 data-number="3" id="examples-of-symmetric-cryptosystems" data-number="3"><span class="header-section-number">3</span> Examples of symmetric cryptosystems</h1>
+<blockquote>
+<p>Examples of symmetric cryptosystems: Caesar and Substitution ciphers. The letter frequency analysis. Monoalphabetic and polyalphabetic cyphers. Vigenère cipher. If the given key of a Vigenère Cipher has repeated letters, does it make it any easier to break?</p>
+</blockquote>
+<h1 data-number="4" id="computational-complexity" data-number="4"><span class="header-section-number">4</span> Computational complexity</h1>
+<blockquote>
+<p>Computational complexity of basic mathematical operations and of the exhaustive key search attack. Complexity classes of algorithms.</p>
+</blockquote>
+<h1 data-number="5" id="three-types-of-security" data-number="5"><span class="header-section-number">5</span> Three types of security</h1>
+<blockquote>
+<p>Three types of security. Perfect secrecy: definition, examples, equivalent formulations (with proof). Perfect secrecy: Shannon’s Theorem (with proof).</p>
+</blockquote>
+<h1 data-number="6" id="rsa-cryptosystem" data-number="6"><span class="header-section-number">6</span> RSA cryptosystem</h1>
+<blockquote>
+<p>RSA cryptosystem: definition, examples, correctness (encryption and decryption are inverse operations). Parameter generation, its complexity. Main attacks.</p>
+</blockquote>
+<h1 data-number="7" id="one-way-functions" data-number="7"><span class="header-section-number">7</span> One-way functions</h1>
+<blockquote>
+<p>One-way function, with trapdoor. Theorem: RSA keys vs Factoring (formulation and sketch of proof).</p>
+</blockquote>
+<h1 data-number="8" id="hash-functions" data-number="8"><span class="header-section-number">8</span> Hash functions</h1>
+<blockquote>
+<p>Hash function: definition, types of resistance, (non)-examples. Optimal asymmetric encryption padding.</p>
+</blockquote>
+<h1 data-number="9" id="discrete-logarithm-problem" data-number="9"><span class="header-section-number">9</span> Discrete logarithm problem</h1>
+<blockquote>
+<p>Discrete logarithm problem. The DLP assumption. The DLP in (Z/(p-1)Z, +) Is breaking the ECC cryptosystem equivalent to solving the DLP?</p>
+</blockquote>
+<h1 data-number="10" id="elgamal-cryptosystem" data-number="10"><span class="header-section-number">10</span> ElGamal cryptosystem</h1>
+<blockquote>
+<p>ElGamal cryptosystem and parameter generation: definition, correctness (encryption and decryption are inverse operations). Theorem: ElGamal keys versus DLP (with proof).</p>
+</blockquote>
+<h1 data-number="11" id="elliptic-curves" data-number="11"><span class="header-section-number">11</span> Elliptic curves</h1>
+<blockquote>
+<p>Elliptic curve: definition, singularities, normal forms, tangents. Theorem: intersection of E with a projective line (with proof).</p>
+</blockquote>
+<h1 data-number="12" id="group-structure-on-elliptic-curves" data-number="12"><span class="header-section-number">12</span> Group structure on elliptic curves</h1>
+<blockquote>
+<p>Group structure on the elliptic curve over the algebraic closure, geometrically: definition and theorem (with proof).</p>
+</blockquote>
+<h1 data-number="13" id="cayley-bacharachs-theorem" data-number="13"><span class="header-section-number">13</span> Cayley-Bacharach’s theorem</h1>
+<blockquote>
+<p>Cayley-Bacharach’s theorem (with proof).</p>
+</blockquote>
+<h1 data-number="14" id="associativity" data-number="14"><span class="header-section-number">14</span> Associativity</h1>
+<blockquote>
+<p>Associativity (sketch of proof).</p>
+</blockquote>
+<h1 data-number="15" id="elliptic-curves-over-finite-fields" data-number="15"><span class="header-section-number">15</span> Elliptic curves over finite fields</h1>
+<blockquote>
+<p>Elliptic curves over finite fields: theorems (without proof) and examples. Check that for a prime q, each natural number in the Hasse interval occurs as the order of the el@liptic curve group over the field of q elements.</p>
+</blockquote>
+<h1 data-number="16" id="diffie-hellman-key-agreement-protocol" data-number="16"><span class="header-section-number">16</span> Diffie-Hellman key agreement protocol</h1>
+<blockquote>
+<p>Diffie-Hellman key agreement: protocol, attacks. The DHP problem. The ECDHE.</p>
+</blockquote>
+<h1 data-number="17" id="digital-signature-scheme" data-number="17"><span class="header-section-number">17</span> Digital signature scheme</h1>
+<blockquote>
+<p>Digital Signature Scheme. RSA signature algorithm. Attacks: definitions and examples.</p>
+</blockquote>
+<h1 data-number="18" id="dss-with-hashing" data-number="18"><span class="header-section-number">18</span> DSS with hashing</h1>
+<blockquote>
+<p>DSS with hashing. Hash functions from block ciphers: definition and example, with proof (the example where <span class="math inline">(x, y) → a^x b^y</span>).</p>
+</blockquote>
+<h1 data-number="19" id="dss-and-public-key-cryptosystems" data-number="19"><span class="header-section-number">19</span> DSS and Public-key cryptosystems</h1>
+<blockquote>
+<p>DSS and Public-key cryptosystem: sign-then-encrypt versus encrypt-versus-sign.</p>
+</blockquote>
+<h1 data-number="20" id="elgamal-variant-of-dss-definition" data-number="20"><span class="header-section-number">20</span> ElGamal variant of DSS (Definition)</h1>
+<blockquote>
+<p>ElGamal variant of DSS: definition and correctness. Security assumptions. Example of misuse (with proof).</p>
+</blockquote>
+<h1 data-number="21" id="elgamal-variant-of-dss-misuse" data-number="21"><span class="header-section-number">21</span> ElGamal variant of DSS (Misuse)</h1>
+<blockquote>
+<p>ElGamal variant of DSS: example of misuse (with proof). ECDSA: definition and correctness.</p>
+</blockquote>
+<h1 data-number="22" id="digital-currency" data-number="22"><span class="header-section-number">22</span> Digital currency</h1>
+<blockquote>
+<p>Digital currency: definition and security requirements. Distributed ledgers. Blockchain. Security assumptions underlying the generation of the bitcoin address.</p>
+</blockquote>
+<h1 data-number="23" id="bitcoin-transactions" data-number="23"><span class="header-section-number">23</span> Bitcoin transactions</h1>
+<blockquote>
+<p>Bitcoin transaction and its verification. Merkle tree. Bitcoin mining.</p>
+</blockquote>
+<h1 data-number="24" id="bit-generators" data-number="24"><span class="header-section-number">24</span> Bit generators</h1>
+<blockquote>
+<p>Bit generator. Linear feedback shift register: definition, periods, security. RSA bit generator.</p>
+</blockquote>
+<h1 data-number="25" id="distinguisher-and-next-bit-predictors" data-number="25"><span class="header-section-number">25</span> Distinguisher and next bit predictors</h1>
+<blockquote>
+<p>Distinguisher. Next bit predictor. Yao’s theorem (sketch of proof).</p>
+</blockquote>
+<h1 data-number="26" id="error-correcting-codes-and-expander-graphs" data-number="26"><span class="header-section-number">26</span> Error-correcting codes and expander graphs</h1>
+<blockquote>
+<p>Error-correcting codes and expander graphs</p>
+</blockquote>
+<h1 data-number="27" id="probabilistic-pidgeonhole-principle" data-number="27"><span class="header-section-number">27</span> Probabilistic pidgeonhole principle</h1>
+<blockquote>
+<p>Describe the probabilistic pidgeonhole principle and explain, with examples, why it is relevant in cryptography (i.e hash functions, birthday paradox etc).</p>
+</blockquote>
+<h1 data-number="28" id="attacks-on-cryptosystems-relying-on-structural-weaknesses" data-number="28"><span class="header-section-number">28</span> Attacks on cryptosystems relying on structural weaknesses</h1>
+<blockquote>
+<p>Describe a variety of attacks that rely on structural weaknesses in respective cryptosystems (for instance, known message attacks for multiplicative systems, or weaknesses of El Gamal under weak random choices).</p>
+</blockquote>
+<h1 data-number="29" id="shanks-algorithm" data-number="29"><span class="header-section-number">29</span> Shanks algorithm</h1>
+<blockquote>
+<p>Describe Shanks algorithm, give examples of its use and outline how to use Shanks Algorithm to compute the order of an elliptic curve of prime order in combination with Hasse’s bound.</p>
+</blockquote>
 <h2 class="unnumbered" data-number="" id="references" class="unnumbered" data-number="">References</h2>
 <div id="refs" class="references hanging-indent" role="doc-bibliography">
 <div id="ref-Martin2012">
