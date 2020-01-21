@@ -24,7 +24,7 @@ RM=/bin/rm
 
 PANDOC=/usr/local/bin/pandoc
 
-PANDOC_OPTIONS=--toc --toc-depth=2 --number-sections --filter pandoc-crossref --filter pandoc-citeproc
+PANDOC_OPTIONS=--toc --toc-depth=1 --number-sections --filter pandoc-crossref --filter pandoc-citeproc
 
 PANDOC_HTML_OPTIONS=--to html5 --katex --template ./templates/standalone.html
 PANDOC_PDF_OPTIONS=--pdf-engine=xelatex -V papersize:a4

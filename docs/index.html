@@ -59,26 +59,12 @@
                         <div class="uk-panel uk-panel-box menu-begin" >
 
                                                         <ul>
-                                                        <li><a href="#cryptography-principles-basic-model-for-secrecy-cryptosystem-for-secrecy"><span class="toc-section-number">1</span> Cryptography principles / Basic model for secrecy / Cryptosystem for secrecy</a>
-                                                        <ul>
-                                                        <li><a href="#cryptography-principles"><span class="toc-section-number">1.1</span> Cryptography principles</a></li>
-                                                        <li><a href="#different-cryptographic-concepts"><span class="toc-section-number">1.2</span> Different cryptographic concepts</a></li>
-                                                        <li><a href="#basic-model-of-a-cryptosystem"><span class="toc-section-number">1.3</span> Basic model of a cryptosystem</a></li>
-                                                        <li><a href="#definition-of-cryptosystem"><span class="toc-section-number">1.4</span> Definition of Cryptosystem</a></li>
-                                                        <li><a href="#cover-time"><span class="toc-section-number">1.5</span> Cover time</a></li>
-                                                        </ul></li>
-                                                        <li><a href="#attacks-on-encryption-algorithms"><span class="toc-section-number">2</span> Attacks on encryption algorithms</a>
-                                                        <ul>
-                                                        <li><a href="#targets-of-attacks"><span class="toc-section-number">2.1</span> Targets of attacks</a></li>
-                                                        <li><a href="#passive-vs-active-attacks"><span class="toc-section-number">2.2</span> Passive vs active attacks</a></li>
-                                                        <li><a href="#key-lengths-and-sizes"><span class="toc-section-number">2.3</span> Key lengths and sizes</a></li>
-                                                        <li><a href="#assumptions"><span class="toc-section-number">2.4</span> Assumptions</a></li>
-                                                        <li><a href="#estimates-on-key-length"><span class="toc-section-number">2.5</span> Estimates on key length</a></li>
-                                                        </ul></li>
+                                                        <li><a href="#cryptography-principles-basic-model-for-secrecy-cryptosystem-for-secrecy"><span class="toc-section-number">1</span> Cryptography principles / Basic model for secrecy / Cryptosystem for secrecy</a></li>
+                                                        <li><a href="#attacks-on-encryption-algorithms"><span class="toc-section-number">2</span> Attacks on encryption algorithms</a></li>
                                                         <li><a href="#examples-of-symmetric-cryptosystems"><span class="toc-section-number">3</span> Examples of symmetric cryptosystems</a></li>
                                                         <li><a href="#computational-complexity"><span class="toc-section-number">4</span> Computational complexity</a></li>
                                                         <li><a href="#three-types-of-security"><span class="toc-section-number">5</span> Three types of security</a></li>
-                                                        <li><a href="#rsa-cryptosystem"><span class="toc-section-number">6</span> RSA cryptosystem</a></li>
+                                                        <li><a href="#sec:rsa"><span class="toc-section-number">6</span> RSA cryptosystem</a></li>
                                                         <li><a href="#one-way-functions"><span class="toc-section-number">7</span> One-way functions</a></li>
                                                         <li><a href="#hash-functions"><span class="toc-section-number">8</span> Hash functions</a></li>
                                                         <li><a href="#discrete-logarithm-problem"><span class="toc-section-number">9</span> Discrete logarithm problem</a></li>
@@ -101,10 +87,7 @@
                                                         <li><a href="#error-correcting-codes-and-expander-graphs"><span class="toc-section-number">26</span> Error-correcting codes and expander graphs</a></li>
                                                         <li><a href="#probabilistic-pidgeonhole-principle"><span class="toc-section-number">27</span> Probabilistic pidgeonhole principle</a></li>
                                                         <li><a href="#attacks-on-cryptosystems-relying-on-structural-weaknesses"><span class="toc-section-number">28</span> Attacks on cryptosystems relying on structural weaknesses</a></li>
-                                                        <li><a href="#shanks-algorithm"><span class="toc-section-number">29</span> Shanks algorithm</a>
-                                                        <ul>
-                                                        <li><a href="#references">References</a></li>
-                                                        </ul></li>
+                                                        <li><a href="#shanks-algorithm"><span class="toc-section-number">29</span> Shanks algorithm</a></li>
                                                         </ul>
                             
                         </div>
@@ -238,7 +221,7 @@
 <blockquote>
 <p>Three types of security. Perfect secrecy: definition, examples, equivalent formulations (with proof). Perfect secrecy: Shannon’s Theorem (with proof).</p>
 </blockquote>
-<h1 data-number="6" id="rsa-cryptosystem" data-number="6"><span class="header-section-number">6</span> RSA cryptosystem</h1>
+<h1 data-number="6" id="sec:rsa" data-number="6"><span class="header-section-number">6</span> RSA cryptosystem</h1>
 <blockquote>
 <p>RSA cryptosystem: definition, examples, correctness (encryption and decryption are inverse operations). Parameter generation, its complexity. Main attacks.</p>
 </blockquote>
@@ -286,6 +269,81 @@
 <blockquote>
 <p>Digital Signature Scheme. RSA signature algorithm. Attacks: definitions and examples.</p>
 </blockquote>
+<p>To ensure the <strong>non-repudiation</strong> of data</p>
+<h2 data-number="17.1" id="definition" data-number="17.1"><span class="header-section-number">17.1</span> Definition</h2>
+<p>Signature scheme is a <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P , A, K, S , V})</span>, satisfying:</p>
+<ul>
+<li><span class="math inline">\mathcal{P}</span> is a finite set of possible <strong>messages</strong>;</li>
+<li><span class="math inline">\mathcal{A}</span> is a finite set of possible <strong>signatures</strong>;</li>
+<li><span class="math inline">\mathcal{K}</span>, the keyspace, is a finite set of possible <strong>keys</strong>;</li>
+<li><span class="math inline">\mathcal{S} = \lbrace{sig_k : k ∈ \mathcal{K}}\rbrace</span> consists of polynomial signing algorithms <span class="math inline">sig_k : \mathcal{P → A}</span>;</li>
+<li><span class="math inline">\mathcal{V} = \lbrace{ver_k : k ∈ \mathcal{K}}\rbrace</span> consists of polynomial verification algorithms <span class="math inline">ver_k : \mathcal{P × A} → \lbrace\mathtt{true, false}\rbrace</span>; <span class="math display">∀x ∈ \mathcal{P}, ∀y ∈ A: ver_k (x, y) =
+  \begin{cases}
+  \mathtt{true},   &amp; \text{if } y = sig_k(x)\\
+  \mathtt{false},  &amp; \text{otherwise}
+  \end{cases}</span></li>
+</ul>
+<p>A pair <span class="math inline">(x,y)</span> with <span class="math inline">x ∈ \mathcal{P}</span>, <span class="math inline">y ∈ \mathcal{A}</span> is called a <strong>signed message</strong>.</p>
+<h2 data-number="17.2" id="rsa-signature-algorithm" data-number="17.2"><span class="header-section-number">17.2</span> RSA signature algorithm</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Public-key cryptosystem</th>
+<th>Digital Signature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Encrypt with <span class="math inline">E_k</span></td>
+<td>Sign with <span class="math inline">D_k</span></td>
+</tr>
+<tr class="even">
+<td>Decrypt with <span class="math inline">D_k</span></td>
+<td>Verify with <span class="math inline">E_k</span></td>
+</tr>
+</tbody>
+</table>
+<p>RSA Signature scheme is a <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P , A, K, S , V})</span> such that:</p>
+<ul>
+<li><p><span class="math inline">n = pq</span>, where <span class="math inline">p, q</span> are primes,</p></li>
+<li><p><span class="math inline">\mathcal{P = A} = ℤ/nℤ</span>, and</p></li>
+<li><p><span class="math inline">\mathcal{K} = \lbrace{(n,p,q,d,e) : de = 1 \mod ϕ(n)}\rbrace</span></p></li>
+<li><p>For <span class="math inline">k = (n,p,q,d,e)</span>, we define <span class="math display">sigk(x)=x^d \mod n \quad \text{and}</span> <span class="math display">ver_k (x, y) =
+  \begin{cases}
+  \mathtt{true},   &amp; \text{if } x = y^e \mod n\\
+  \mathtt{false},  &amp; \text{otherwise}.
+  \end{cases}</span></p></li>
+<li><p>Public-key is <strong><span class="math inline">(n, e)</span></strong> and private-key is <strong><span class="math inline">(p, q, d)</span></strong>.</p></li>
+</ul>
+<p><strong>Note:</strong> By the defintion of DSS we should have:</p>
+<p><span class="math display">\begin{aligned}
+ver_k(x, y) = \mathtt{true} &amp; ⇔ y = sig_k(x) = x^d \mod n\\
+&amp; ⇔ x = y^e \mod n
+\end{aligned}</span></p>
+<p>Since <span class="math inline">de = 1 \mod ϕ(n)</span>, we have <span class="math inline">de = tϕ(n) + 1</span> for some <span class="math inline">t ∈ ℤ</span>. If <span class="math inline">x ∈ (ℤ / nℤ)^*</span>, then <span class="math display">\begin{aligned}
+(x^e)^d &amp;= x^{t ϕ(n) + 1} \mod n = (x^{ϕ(n)})^t x \mod n =\\
+&amp; \underset{|(ℤ / nℤ)^*| = ϕ(n)}{=} 1^t x \mod n = x \mod n
+\end{aligned}</span></p>
+<p>If <span class="math inline">x \not\in (ℤ / nℤ)^*</span>, we know that <span class="math inline">x \equiv 0 \mod p</span> or <span class="math inline">x \equiv 0 \mod q</span> and uses Fermat’s little theorem and the Chinese remainder theorem as in sec. <a href="#sec:rsa">6</a>.</p>
+<h2 data-number="17.3" id="attacks-on-dss" data-number="17.3"><span class="header-section-number">17.3</span> Attacks on DSS</h2>
+<ul>
+<li><strong>Key-only:</strong> The attacker knows the public verification key, hence, verk .</li>
+<li><strong>Known message:</strong> The attacker knows some messages (not selected by him) and their signatures.</li>
+<li><strong>Chosen message:</strong> The attacker knows some messages (selected by him) and their signatures.</li>
+</ul>
+<h2 data-number="17.4" id="goals-of-attacks-on-dss" data-number="17.4"><span class="header-section-number">17.4</span> Goals of attacks on DSS</h2>
+<ul>
+<li><strong>Total break:</strong> The attacker determines Alice’s private key, hence, <span class="math inline">sig_k</span>.</li>
+<li><strong>Selective forgery:</strong> With a non-negligible probability, the attacker creates a valid signature on a message chosen by someone else.</li>
+<li><strong>Existential forgery:</strong> Forge a signature for some message (without the ability to do this for any message).</li>
+<li><strong>Universal forgery:</strong> Forge signatures of any message.</li>
+</ul>
+<h2 data-number="17.5" id="examples-of-attacks" data-number="17.5"><span class="header-section-number">17.5</span> Examples of attacks</h2>
+<ol type="1">
+<li><p><em>Existential forgery using key-only attack</em> is always possible: Choose an arbitrary signature <span class="math inline">y</span>, then compute the message <span class="math inline">x</span> given by <span class="math inline">x := E_k (y)</span>.<br />
+<span class="math inline">⇒</span> use <strong>redundancy</strong> or <strong>hashing</strong>.</p></li>
+<li><p><em>Universal forgery under a chosen message attack</em> is possible, if one-way function with trapdoor is multiplicative (e.g. RSA <span class="math inline">(xy)^e = x^e \cdot y^e</span>). To sign <span class="math inline">x = x_1 x_2</span> trick Alice into signing <span class="math inline">x_1, x_2</span> to obtain <span class="math inline">y_1, y_2</span> and compute <span class="math inline">(x, y) = (x, y_1 y_2)</span>.</p></li>
+</ol>
 <h1 data-number="18" id="dss-with-hashing" data-number="18"><span class="header-section-number">18</span> DSS with hashing</h1>
 <blockquote>
 <p>DSS with hashing. Hash functions from block ciphers: definition and example, with proof (the example where <span class="math inline">(x, y) → a^x b^y</span>).</p>

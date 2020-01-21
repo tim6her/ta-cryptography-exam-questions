@@ -141,7 +141,7 @@ $$\mathbb{E}[X] = \sum_{i = 1}^n i \frac{1}{n} =
 > Three types of security. Perfect secrecy: definition, examples, equivalent
 > formulations (with proof). Perfect secrecy: Shannon’s Theorem (with proof).
 
-# RSA cryptosystem
+# RSA cryptosystem{#sec:rsa}
 
 > RSA cryptosystem: definition, examples, correctness (encryption and decryption
 > are inverse operations). Parameter generation, its complexity. Main attacks.
@@ -199,6 +199,98 @@ $$\mathbb{E}[X] = \sum_{i = 1}^n i \frac{1}{n} =
 
 > Digital Signature Scheme. RSA signature algorithm. Attacks: definitions and
 > examples.
+
+To ensure the **non-repudiation** of data
+
+## Definition
+
+Signature scheme is a $5$-tuple $(\mathcal{P , A, K, S , V})$, satisfying:
+
+*  $\mathcal{P}$ is a finite set of possible **messages**;
+*  $\mathcal{A}$ is a finite set of possible **signatures**;
+*  $\mathcal{K}$, the keyspace, is a finite set of possible **keys**;
+*  $\mathcal{S} = \lbrace{sig_k : k ∈ \mathcal{K}}\rbrace$ consists of
+   polynomial signing algorithms $sig_k : \mathcal{P → A}$;
+*  $\mathcal{V} = \lbrace{ver_k : k ∈ \mathcal{K}}\rbrace$ consists of
+   polynomial verification algorithms
+   $ver_k : \mathcal{P × A} → \lbrace\mathtt{true, false}\rbrace$;
+   $$∀x ∈ \mathcal{P}, ∀y ∈ A: ver_k (x, y) =
+     \begin{cases}
+     \mathtt{true},   & \text{if } y = sig_k(x)\\
+     \mathtt{false},  & \text{otherwise}
+     \end{cases}$$
+
+A pair $(x,y)$ with $x ∈ \mathcal{P}$, $y ∈ \mathcal{A}$ is called a
+**signed message**.
+
+## RSA signature algorithm
+
+| Public-key cryptosystem | Digital Signature |
+| ----------------------- | ----------------- |
+| Encrypt with $E_k$      | Sign with $D_k$   |
+| Decrypt with $D_k$      | Verify with $E_k$ |
+
+RSA Signature scheme is a $5$-tuple $(\mathcal{P , A, K, S , V})$ such that:
+
+*  $n = pq$, where $p, q$ are primes,
+*  $\mathcal{P = A} = ℤ/nℤ$, and
+*  $\mathcal{K} = \lbrace{(n,p,q,d,e) : de = 1 \mod ϕ(n)}\rbrace$
+*  For $k = (n,p,q,d,e)$, we define
+   $$sigk(x)=x^d \mod n \quad \text{and}$$
+   $$ver_k (x, y) =
+     \begin{cases}
+     \mathtt{true},   & \text{if } x = y^e \mod n\\
+     \mathtt{false},  & \text{otherwise}.
+     \end{cases}$$
+
+* Public-key is **$(n, e)$** and private-key is **$(p, q, d)$**.
+
+**Note:** By the defintion of DSS we should have:
+
+$$\begin{aligned}
+ver_k(x, y) = \mathtt{true} & ⇔ y = sig_k(x) = x^d \mod n\\
+& ⇔ x = y^e \mod n
+\end{aligned}$$
+
+Since $de = 1 \mod ϕ(n)$, we have $de = tϕ(n) + 1$ for some $t ∈ ℤ$. If
+$x ∈ (ℤ / nℤ)^*$, then
+$$\begin{aligned}
+(x^e)^d &= x^{t ϕ(n) + 1} \mod n = (x^{ϕ(n)})^t x \mod n =\\
+& \underset{|(ℤ / nℤ)^*| = ϕ(n)}{=} 1^t x \mod n = x \mod n
+\end{aligned}$$
+
+If $x \not\in (ℤ / nℤ)^*$, we know that $x \equiv 0 \mod p$ or
+$x \equiv 0 \mod q$ and uses Fermat's little theorem and the Chinese remainder
+theorem as in @sec:rsa.
+
+## Attacks on DSS
+
+*  **Key-only:** The attacker knows the public verification key, hence, verk .
+*  **Known message:** The attacker knows some messages (not selected
+   by him) and their signatures.
+*  **Chosen message:** The attacker knows some messages (selected by him) and
+  their signatures.
+
+## Goals of attacks on DSS
+
+* **Total break:** The attacker determines Alice’s private key, hence, $sig_k$.
+* **Selective forgery:** With a non-negligible probability, the attacker creates
+  a valid signature on a message chosen by someone else.
+* **Existential forgery:** Forge a signature for some message (without the
+  ability to do this for any message).
+* **Universal forgery:** Forge signatures of any message.
+
+## Examples of attacks
+
+1. *Existential forgery using key-only attack* is always possible: Choose an
+   arbitrary signature $y$, then compute the message $x$ given by
+   $x := E_k (y)$.\
+   $⇒$ use **redundancy** or **hashing**.
+
+2. *Universal forgery under a chosen message attack* is possible, if one-way
+   function with trapdoor is multiplicative (e.g. RSA $(xy)^e = x^e \cdot y^e$).
+   To sign $x = x_1 x_2$ trick Alice into signing $x_1, x_2$ to obtain
+   $y_1, y_2$ and compute $(x, y) = (x, y_1 y_2)$.
 
 # DSS with hashing
 
