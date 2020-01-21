@@ -165,7 +165,7 @@
 <li>Access control (via software or hardware)</li>
 </ol>
 <h2 data-number="1.4" id="definition-of-cryptosystem" data-number="1.4"><span class="header-section-number">1.4</span> Definition of Cryptosystem</h2>
-<p>Cryptosystem is a <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P, C, K, E, D})</span> satisfying:</p>
+<p><strong>Cryptosystem</strong> is a <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P, C, K, E, D})</span> satisfying:</p>
 <ul>
 <li><span class="math inline">\mathcal{P}</span> is a finite set of possible <strong>plaintexts</strong>;</li>
 <li><span class="math inline">\mathcal{C}</span> is a finite set of possible <strong>ciphertexts</strong>;</li>
@@ -271,7 +271,7 @@
 </blockquote>
 <p>To ensure the <strong>non-repudiation</strong> of data</p>
 <h2 data-number="17.1" id="definition" data-number="17.1"><span class="header-section-number">17.1</span> Definition</h2>
-<p>Signature scheme is a <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P , A, K, S , V})</span>, satisfying:</p>
+<p><strong>Signature scheme</strong> is a <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P , A, K, S , V})</span>, satisfying:</p>
 <ul>
 <li><span class="math inline">\mathcal{P}</span> is a finite set of possible <strong>messages</strong>;</li>
 <li><span class="math inline">\mathcal{A}</span> is a finite set of possible <strong>signatures</strong>;</li>
@@ -303,7 +303,7 @@
 </tr>
 </tbody>
 </table>
-<p>RSA Signature scheme is a <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P , A, K, S , V})</span> such that:</p>
+<p><strong>RSA signature scheme</strong> is a <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P , A, K, S , V})</span> such that:</p>
 <ul>
 <li><p><span class="math inline">n = pq</span>, where <span class="math inline">p, q</span> are primes,</p></li>
 <li><p><span class="math inline">\mathcal{P = A} = ℤ/nℤ</span>, and</p></li>
@@ -348,6 +348,24 @@ ver_k(x, y) = \mathtt{true} &amp; ⇔ y = sig_k(x) = x^d \mod n\\
 <blockquote>
 <p>DSS with hashing. Hash functions from block ciphers: definition and example, with proof (the example where <span class="math inline">(x, y) → a^x b^y</span>).</p>
 </blockquote>
+<p><em>DSS + Hashing = Hash-then-sign</em></p>
+<h2 data-number="18.1" id="definition-1" data-number="18.1"><span class="header-section-number">18.1</span> Definition</h2>
+<p><strong>DSS with hashing</strong> is a DSS <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P , A, K, S , V})</span> such that:</p>
+<ul>
+<li><span class="math inline">\mathcal{P} = \lbrace{0,1}\rbrace^∗</span> and</li>
+<li><span class="math inline">\mathcal{A} = \lbrace{0, 1}\rbrace^l</span> for some <span class="math inline">l ∈ N</span>;</li>
+<li><span class="math inline">h: \mathcal{P → A}</span> a public <strong>hash function</strong> given by a polynomial algorithm;</li>
+<li><span class="math inline">sig_k(x) = f_k^{−1}(h(x))</span>, where <span class="math inline">f_k : A → A</span> is a one-way function with trapdoor.</li>
+<li><span class="math inline">∀x ∈ P, ∀y ∈ A: ver_k (x, y) = \begin{cases} \mathtt{true}, &amp; \text{if } f_k(y) = h(x)\\ \mathtt{false}, &amp; \text{otherwise}. \end{cases}</span></li>
+</ul>
+<p>To avoid the attacks <span class="math inline">h</span> must be a one-way <strong>non-multiplicative</strong> function. <span class="math inline">h</span> is <strong>collision resistant</strong> if it is infeasible to find <span class="math inline">x_1 ≠ x_2</span> with <span class="math inline">h(x_1) = h(x_2)</span>.</p>
+<p>A <strong>block cipher</strong> encodes blocks of bits at a time (e.g. Vigenère, Feistel).</p>
+<h2 data-number="18.2" id="definition-2" data-number="18.2"><span class="header-section-number">18.2</span> Definition</h2>
+<p><strong>Hash functions from block ciphers:</strong></p>
+<p>Let <span class="math inline">\mathcal{P = K = C} = \lbrace{0, 1}\rbrace^l</span> for some <span class="math inline">l ∈ ℕ</span> and <span class="math inline">E</span> be a block cipher: <span class="math display">E : \mathcal{P × K → C}, \quad (x, e) ↦ E_e(x).</span></p>
+<p>Define <span class="math inline">h(x_1,...,x_r) ∈ \lbrace{0,1}\rbrace^l</span> with <span class="math inline">x_i ∈ \lbrace{0,1}\rbrace^l</span> recursively (on <span class="math inline">r</span>), by <span class="math inline">h(∅) = 0</span>, and <span class="math display">h(x_1,...,x_r) = E_{e_h}(x_r) + e_h,
+\text{where } e_h = h(x_1,...,x_{r−1}).</span></p>
+<p>SHA-1 is an example of such a hash function.</p>
 <h1 data-number="19" id="dss-and-public-key-cryptosystems" data-number="19"><span class="header-section-number">19</span> DSS and Public-key cryptosystems</h1>
 <blockquote>
 <p>DSS and Public-key cryptosystem: sign-then-encrypt versus encrypt-versus-sign.</p>

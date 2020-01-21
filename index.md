@@ -66,7 +66,7 @@ Secrecy can be provided by (combination of):
 
 ## Definition of Cryptosystem
 
-Cryptosystem is a $5$-tuple $(\mathcal{P, C, K, E, D})$ satisfying:
+**Cryptosystem** is a $5$-tuple $(\mathcal{P, C, K, E, D})$ satisfying:
 
 * $\mathcal{P}$ is a finite set of possible **plaintexts**;
 * $\mathcal{C}$ is a finite set of possible **ciphertexts**;
@@ -204,7 +204,7 @@ To ensure the **non-repudiation** of data
 
 ## Definition
 
-Signature scheme is a $5$-tuple $(\mathcal{P , A, K, S , V})$, satisfying:
+**Signature scheme** is a $5$-tuple $(\mathcal{P , A, K, S , V})$, satisfying:
 
 *  $\mathcal{P}$ is a finite set of possible **messages**;
 *  $\mathcal{A}$ is a finite set of possible **signatures**;
@@ -230,7 +230,7 @@ A pair $(x,y)$ with $x ∈ \mathcal{P}$, $y ∈ \mathcal{A}$ is called a
 | Encrypt with $E_k$      | Sign with $D_k$   |
 | Decrypt with $D_k$      | Verify with $E_k$ |
 
-RSA Signature scheme is a $5$-tuple $(\mathcal{P , A, K, S , V})$ such that:
+**RSA signature scheme** is a $5$-tuple $(\mathcal{P , A, K, S , V})$ such that:
 
 *  $n = pq$, where $p, q$ are primes,
 *  $\mathcal{P = A} = ℤ/nℤ$, and
@@ -296,6 +296,45 @@ theorem as in @sec:rsa.
 
 > DSS with hashing. Hash functions from block ciphers: definition and example,
 > with proof (the example where $(x, y) → a^x b^y$).
+
+*DSS + Hashing = Hash-then-sign*
+
+## Definition
+
+**DSS with hashing** is a DSS $5$-tuple $(\mathcal{P , A, K, S , V})$ such that:
+
+* $\mathcal{P} = \lbrace{0,1}\rbrace^∗$ and
+* $\mathcal{A} = \lbrace{0, 1}\rbrace^l$ for some $l ∈ N$;
+* $h: \mathcal{P → A}$ a public **hash function** given by a polynomial
+ algorithm;
+* $sig_k(x) = f_k^{−1}(h(x))$, where $f_k : A → A$ is a one-way function with
+  trapdoor.
+* $∀x ∈ P, ∀y ∈ A: ver_k (x, y) =
+  \begin{cases}
+  \mathtt{true},   & \text{if } f_k(y) = h(x)\\
+  \mathtt{false},  & \text{otherwise}.
+  \end{cases}$
+
+To avoid the attacks $h$ must be a one-way **non-multiplicative** function.
+$h$ is **collision resistant** if it is infeasible to find $x_1 ≠ x_2$ with
+$h(x_1) = h(x_2)$.
+
+A **block cipher** encodes blocks of bits at a time (e.g. Vigenère, Feistel).
+
+## Definition
+
+**Hash functions from block ciphers:**
+
+Let $\mathcal{P = K = C} = \lbrace{0, 1}\rbrace^l$ for some $l ∈ ℕ$ and $E$ be
+a block cipher:
+$$E : \mathcal{P × K → C}, \quad (x, e) ↦ E_e(x).$$
+
+Define $h(x_1,...,x_r) ∈ \lbrace{0,1}\rbrace^l$ with
+$x_i ∈ \lbrace{0,1}\rbrace^l$ recursively (on $r$), by $h(∅) = 0$, and
+$$h(x_1,...,x_r) = E_{e_h}(x_r) + e_h,
+\text{where } e_h = h(x_1,...,x_{r−1}).$$
+
+SHA-1 is an example of such a hash function.
 
 # DSS and Public-key cryptosystems
 
