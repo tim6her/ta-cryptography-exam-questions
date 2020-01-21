@@ -36,7 +36,7 @@ Non-Repudiation $⇒$ Data origin authentication
 
 Data origin authentication $≠$ Entity authentication
 
-Secrecy $\not⇒$ Data origin authentication
+Secrecy $\nRightarrow$ Data origin authentication
 
 ## Different cryptographic concepts
 

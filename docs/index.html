@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Cryptography – Exam Questions</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.26.4/css/uikit.gradient.css">
+
+        <link rel="stylesheet" href="style.css">
+        <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <script src="uikit.js"></script>
+        <script src="scripts.js"></script>
+        <script src="jquery.sticky-kit.js "></script>
+
+        <meta name="generator" content="pandoc-uikit" />
+                <meta name="author" content="Tim Herbstrith" />
+                        <meta name="date" content="2020-01-01" />
+                <title>Cryptography – Exam Questions</title>
+        <style type="text/css">code{white-space: pre;}</style>
+                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+                                        <script>document.addEventListener("DOMContentLoaded", function () {
+                                         var mathElements = document.getElementsByClassName("math");
+                                         for (var i = 0; i < mathElements.length; i++) {
+                                          var texText = mathElements[i].firstChild;
+                                          if (mathElements[i].tagName == "SPAN") {
+                                           katex.render(texText.data, mathElements[i], {
+                                            displayMode: mathElements[i].classList.contains('display'),
+                                            throwOnError: false,
+                                            fleqn: false
+                                           });
+                                        }}});
+                                        </script>
+                                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+                    </head>
+
+    <body>
+
+
+        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+
+                        <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-1-1">
+                    <h1 class="uk-heading-large">Cryptography – Exam Questions</h1>
+                                        <p class="uk-text-large">
+                                        Tim Herbstrith,
+                                                            2020
+                                        </p>
+                </div>
+            </div>
+            
+            <div class="uk-grid" data-uk-grid-margin >
+                <div class="uk-width-medium-1-4">
+                    <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
+                        <div class="uk-panel uk-panel-box menu-begin" >
+
+                                                        <ul>
+                                                        <li><a href="#cryptography-principles-basic-model-for-secrecy-cryptosystem-for-secrecy"><span class="toc-section-number">1</span> Cryptography principles / Basic model for secrecy / Cryptosystem for secrecy</a>
+                                                        <ul>
+                                                        <li><a href="#cryptography-principles"><span class="toc-section-number">1.1</span> Cryptography principles</a></li>
+                                                        <li><a href="#different-cryptographic-concepts"><span class="toc-section-number">1.2</span> Different cryptographic concepts</a></li>
+                                                        <li><a href="#basic-model-of-a-cryptosystem"><span class="toc-section-number">1.3</span> Basic model of a cryptosystem</a></li>
+                                                        <li><a href="#definition-of-cryptosystem"><span class="toc-section-number">1.4</span> Definition of Cryptosystem</a></li>
+                                                        <li><a href="#cover-time"><span class="toc-section-number">1.5</span> Cover time</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#attacks-on-encryption-algorithms"><span class="toc-section-number">2</span> Attacks on encryption algorithms</a>
+                                                        <ul>
+                                                        <li><a href="#targets-of-attacks"><span class="toc-section-number">2.1</span> Targets of attacks</a></li>
+                                                        <li><a href="#passive-vs-active-attacks"><span class="toc-section-number">2.2</span> Passive vs active attacks</a></li>
+                                                        <li><a href="#key-lengths-and-sizes"><span class="toc-section-number">2.3</span> Key lengths and sizes</a></li>
+                                                        <li><a href="#assumptions"><span class="toc-section-number">2.4</span> Assumptions</a></li>
+                                                        <li><a href="#estimates-on-key-length"><span class="toc-section-number">2.5</span> Estimates on key length</a></li>
+                                                        <li><a href="#references">References</a></li>
+                                                        </ul></li>
+                                                        </ul>
+                            
+                        </div>
+                        <div class="uk-panel uk-panel-box menu-begin" >
+
+<dl>
+  <dt>Downloads</dt>
+
+  <dd><a href="./index.pdf">PDF</a></dd>
+
+  <dd><a href="./index.epub">Epub</a></dd>
+
+</dl>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-medium-3-4">
+<h1 data-number="1" id="cryptography-principles-basic-model-for-secrecy-cryptosystem-for-secrecy" data-number="1"><span class="header-section-number">1</span> Cryptography principles / Basic model for secrecy / Cryptosystem for secrecy</h1>
+<blockquote>
+<p>Cryptography principles definitions, (non) examples. Basic cryptography concepts (primitive, protocol, cover time, etc.). Basic model for secrecy: (non)-examples. Cryptosystem for secrecy: definition, examples. Symmetric versus asymmetric cryptosystems.</p>
+</blockquote>
+<h2 data-number="1.1" id="cryptography-principles" data-number="1.1"><span class="header-section-number">1.1</span> Cryptography principles</h2>
+<ul>
+<li>Confidentiality / secrecy:
+<ul>
+<li>limit access to information</li>
+</ul></li>
+<li>Data Integrity
+<ul>
+<li>data was not altered (intentionally or accidentally)</li>
+<li>detection of alteration (not prevention)</li>
+</ul></li>
+<li>Data origin authentication / message authentication
+<ul>
+<li>confirms the origin of data with no temporal aspect to the <strong>receiver</strong></li>
+<li>not necessarily an immediate source / not when</li>
+</ul></li>
+<li>Entity authentication
+<ul>
+<li>a given entity is involved and currently active</li>
+<li>e.g. log in at web service</li>
+</ul></li>
+<li>Non-Repudiation
+<ul>
+<li>a source of data cannot deny to a <strong>third party</strong> being at the origin</li>
+</ul></li>
+</ul>
+<p>Data origin authentication <span class="math inline">⇒</span> Data integrity</p>
+<p>Non-Repudiation <span class="math inline">⇒</span> Data origin authentication</p>
+<p>Data origin authentication <span class="math inline">≠</span> Entity authentication</p>
+<p>Secrecy <span class="math inline">\nRightarrow</span> Data origin authentication</p>
+<h2 data-number="1.2" id="different-cryptographic-concepts" data-number="1.2"><span class="header-section-number">1.2</span> Different cryptographic concepts</h2>
+<ul>
+<li>Cryptography = <strong>toolkit</strong></li>
+<li>Cryptographic <strong>primitive</strong> = a basic tool in this toolkit
+<ul>
+<li>Examples: Encryption, hash function, MAC (message authentication code), digital signature, etc.</li>
+</ul></li>
+<li>Cryptographic <strong>algorithm</strong> = Cipher = a specification of a primitive</li>
+<li>Cryptographic <strong>protocol</strong> = a way to choose primitives and use them for a security goal</li>
+<li>Crypto<strong>system</strong> = implementation of primitives and the infrastructure</li>
+</ul>
+<h2 data-number="1.3" id="basic-model-of-a-cryptosystem" data-number="1.3"><span class="header-section-number">1.3</span> Basic model of a cryptosystem</h2>
+<figure>
+<img src="./imgs/basic_model_for_secrecy.png" id="fig:basic_model" alt="" /><figcaption>Figure 1: Basic model of a cryptosystem <span class="citation" data-cites="Martin2012">(Martin <a href="#ref-Martin2012" role="doc-biblioref">2012</a>)</span></figcaption>
+</figure>
+<p>Fig. <a href="#fig:basic_model">1</a> depicts a sender who wishes to transfer some data to a receiver in such a way that any party intercepting the transmitted data cannot determine the content. <em>The interceptor must not know the decryption key.</em></p>
+<p>Secrecy can be provided by (combination of):</p>
+<ol type="1">
+<li>Cryptography (via encryption)</li>
+<li>Steganography (via information hiding)</li>
+<li>Access control (via software or hardware)</li>
+</ol>
+<h2 data-number="1.4" id="definition-of-cryptosystem" data-number="1.4"><span class="header-section-number">1.4</span> Definition of Cryptosystem</h2>
+<p>Cryptosystem is a <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P, C, K, E, D})</span> satisfying:</p>
+<ul>
+<li><span class="math inline">\mathcal{P}</span> is a finite set of possible <strong>plaintexts</strong>;</li>
+<li><span class="math inline">\mathcal{C}</span> is a finite set of possible <strong>ciphertexts</strong>;</li>
+<li><span class="math inline">\mathcal{K}</span>, the keyspace, is a finite set of possible <strong>keys</strong>;</li>
+<li><span class="math inline">\mathcal{E} = \lbrace{E_k : k ∈ \mathcal{K}}\rbrace</span> consists of <strong>encryption functions</strong> <span class="math inline">E_k : \mathcal{P → C}</span>;</li>
+<li><span class="math inline">\mathcal{D} = \lbrace{D_k : k ∈ \mathcal{K}}\rbrace</span> consists of <strong>decryption functions</strong> <span class="math inline">D_k : \mathcal{C → P}</span>;</li>
+<li>For all <span class="math inline">e ∈ \mathcal{K}</span> there exists <span class="math inline">d ∈ \mathcal{K}</span> such that for all plaintexts <span class="math inline">p ∈ \mathcal{P}</span> we have: <span class="math display">D_d(E_e(p)) = p</span></li>
+</ul>
+<p>The cryptosystem is</p>
+<ul>
+<li><strong>symmetric</strong> if <span class="math inline">e = d</span> and</li>
+<li><strong>public-key</strong> if <span class="math inline">d</span> cannot be derived from <span class="math inline">e</span> in a computationally feasible way</li>
+</ul>
+<h2 data-number="1.5" id="cover-time" data-number="1.5"><span class="header-section-number">1.5</span> Cover time</h2>
+<p><strong>Cover time</strong> = the time for which a plaintext must be kept secret.</p>
+<h1 data-number="2" id="attacks-on-encryption-algorithms" data-number="2"><span class="header-section-number">2</span> Attacks on encryption algorithms</h1>
+<blockquote>
+<p>Main attacks on encryption algorithms. Passive versus active attacks. Keys: length, size. Brute-force attack: assumptions, estimates on key lengths.</p>
+</blockquote>
+<h2 data-number="2.1" id="targets-of-attacks" data-number="2.1"><span class="header-section-number">2.1</span> Targets of attacks</h2>
+<ul>
+<li>A practical method of determining the <strong>decryption key</strong> is found.</li>
+<li>A weakness in the encryption algorithm leads to a <strong>plaintext</strong>.</li>
+</ul>
+<h2 data-number="2.2" id="passive-vs-active-attacks" data-number="2.2"><span class="header-section-number">2.2</span> Passive vs active attacks</h2>
+<ul>
+<li>The main type of <strong>passive attack</strong> is unauthorised access to data.</li>
+<li>An <strong>active attack</strong> involves either data being changed in some way, or a process being conducted on the data.</li>
+</ul>
+<h2 data-number="2.3" id="key-lengths-and-sizes" data-number="2.3"><span class="header-section-number">2.3</span> Key lengths and sizes</h2>
+<ul>
+<li><strong>Length</strong> of the key = number of bites it takes to represent the key</li>
+<li><strong>Size</strong> of the keyspace = number of possible different decryption keys</li>
+</ul>
+<h2 data-number="2.4" id="assumptions" data-number="2.4"><span class="header-section-number">2.4</span> Assumptions</h2>
+<ul>
+<li>All keys from the keyspace are equally likely to be selected</li>
+<li>The correct decryption key is identified as soon as it is tested</li>
+</ul>
+<h2 data-number="2.5" id="estimates-on-key-length" data-number="2.5"><span class="header-section-number">2.5</span> Estimates on key length</h2>
+<p>If Size = <span class="math inline">n = 2k</span>, then, on average, one needs <span class="math inline">∼ 2k − 1</span> attempts to find the correct decryption key:</p>
+<p><span class="math display">\mathbb{E}[X] = \sum_{i = 1}^n i \frac{1}{n} =
+   \frac{n \; (n - 1)}{2} = \frac{2^k + 1}{2} ∼ 2^{k - 1}</span></p>
+<h2 class="unnumbered" data-number="" id="references" class="unnumbered" data-number="">References</h2>
+<div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-Martin2012">
+<p>Martin, Keith M. 2012. <em>Everyday Cryptography: Fundamental Principles and Applications</em>. Oxford University Press.</p>
+</div>
+</div>
+                </div>
+            </div>
+            <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+        </div>
+            </body>
+</html>

@@ -1,6 +1,6 @@
 .DS_Store
-*.epub
-*.html
 *.pdf
+*.epub
+!docs/index.pdf
+!docs/index.epub
 *.bib.bak
-docs/imgs/
