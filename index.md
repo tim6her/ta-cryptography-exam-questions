@@ -509,6 +509,91 @@ above.
 > ElGamal variant of DSS: example of misuse (with proof). ECDSA: definition and
 > correctness.
 
+## Definition
+
+*  Let $p$ be a prime and $g$ a primitive element $\mod p$.
+*  Let $\mathcal{P} = (ℤ / pℤ)^*, \mathcal{A} = (ℤ / pℤ)^* × (ℤ / (p − 1)ℤ)$
+   and define
+   $$\mathcal{K} = \lbrace{(p, g, d, y) : y = g^d \mod p}\rbrace.$$
+*  For $k = (p,g,d,y)$, and for a secrete random $r ∈ (ℤ / (p−1)ℤ)^*$, define
+   $$sig_k(x; r) = (y1,y2),$$
+   where
+   $$y_1 = g^r \mod p, \quad \text{and} \quad
+   y_2 = (x − d y_1) r^{−1} \mod p−1.$$
+   For $x, y_1 ∈ (ℤ / pℤ)^*$ and $y_2 ∈ ℤ / (p−1)ℤ$, define
+   $$ver_k(x, (y_1, y_2)) = \mathtt{true} ⇔ y^{y_1}(y_1)^{y_2} ≡ g^x \mod p$$
+
+*  Public key is **$(p, g, y)$** and private key is **$d$**.
+
+## Example of misuse
+
+If the same $k$ is used twice a total break is possible.
+
+*Proof:* Let $(y_1, y_2)$ a signature of $x_1$ and $(y_1, z_2)$ a signature of
+$x_2$. Then
+$$y^{y1} (y_1)^{y_2} ≡ g^{x_1} \mod p, \quad
+  y^{y1} (y_1)^{z_2} ≡ g^{x_2} \mod p,$$
+ thus,
+ $$g^{x_1 − x_2} ≡ (y_1)^{y_2 − z_2)} mod p.$$
+
+Substituting $y_1 \equiv g^r \mod p$ yields an equation in the single
+**unknown $r$**. By Fermat's little theorem this is equivalent to
+$$x_1 - x_2 \equiv r (y_2 - z_2) \mod p - 1.$$
+{#eq:elgamal-misuse2}
+
+If $(y_2 - z_2)$ is invertible $\mod p - 1$, we divide by $(y_2 - z_2)$ and are
+done. Otherwise, set $s := \gcd(y_2 - z-2, p - 1)$ and note that
+$s \mid x_1 - x_2$. We set
+$$x' := \frac{x_1 - x_2}{s}, \quad
+y' := \frac{y_2 - z_2}{s}, \quad p' := \frac{p - 1}{s}.
+$$
+Then @eq:elgamal-misuse2 becomes
+$$x' \equiv r y' \mod p'.$$
+Since $\gcd(y', p') = 1$, we obtain $r \equiv x' (y')^{-1} \mod p'$.
+
+This yields $s$ possible values for $r \mod p - 1$, namely
+$$r_i := x'(y')^{-1} + i p' \mod p − 1, \text{ for } 0 ≤ i ≤ s − 1.$$
+The correct value is obtained by testing
+$$y_1 \equiv g^{r_i} \mod p.$$
+
+To determine the private key $d$, we modify the defining equation for $y_2$ and
+obtain
+$$d y_1 \equiv x - r y_2 \mod p - 1.$$
+If $y_1$ is invertible $\mod p -1$ we divide by $y_1$, otherwise we proceed as
+above.
+
+## Definition: ECDSA, hash-and-sign
+
+*  $p$ prime, $\mathbf{k} = (ℤ / pℤ)$, $E = E(\mathbf{k})$, $P ∈ E$ of prime
+   order $q$.
+*  $\mathcal{P} = \lbrace{0, 1}\rbrace^∗, \mathcal{A} = (ℤ/qℤ)^* × (ℤ/qℤ)^*$ and
+   $$\mathcal{K} = \lbrace{(p, q, E, P, d, Q) : Q = dP}\rbrace,$$
+   where $0 ≤ d ≤ q - 1$.
+*  For $k = (p, q, E, P, d Q)$ and a secret random
+   $r ∈ \lbrace 1, …, q-1\rbrace$, define
+   $$sig_{k}(x, r) = (t, s)$$
+   where $rP = (u, v)$ and
+   $$\begin{aligned}
+   t &= u \mod q, \\
+   s &= r^{-1}(h(x) + dt) \mod q.
+   \end{aligned}$$
+*  If either $t = 0$ or $s = 0$, a new random value of $r$ is chosen.
+*  The public key is **$(p, q, E, P, Q)$** and the private key is **$d$**.
+
+### Verification of ECDSA
+
+For $x ∈ \lbrace 0, 1\rbrace^*$ and $t, s ∈ (ℤ / qℤ)^*$, we compute
+ $$\begin{aligned}
+ w &= s^{-1} \mod{q} \\
+ i &= wh(x) \mod{q} \\
+ j &= wt \mod{q} \\
+ (u, v) &= iP + jQ
+ \end{aligned}$$
+ and define
+ $$ver_{k}(x, (t, s)) = \mathtt{true} ⇔ u \mod q = t$$
+
+ To prove correctness, show that $iP + jQ = rP$.
+
 # Digital currency
 
 > Digital currency: definition and security requirements. Distributed

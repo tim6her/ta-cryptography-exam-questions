@@ -458,6 +458,43 @@ y&#39; := \frac{y_2 - z_2}{s}, \quad p&#39; := \frac{p - 1}{s}.
 <blockquote>
 <p>ElGamal variant of DSS: example of misuse (with proof). ECDSA: definition and correctness.</p>
 </blockquote>
+<h2 data-number="21.1" id="definition-4" data-number="21.1"><span class="header-section-number">21.1</span> Definition</h2>
+<ul>
+<li><p>Let <span class="math inline">p</span> be a prime and <span class="math inline">g</span> a primitive element <span class="math inline">\mod p</span>.</p></li>
+<li><p>Let <span class="math inline">\mathcal{P} = (ℤ / pℤ)^*, \mathcal{A} = (ℤ / pℤ)^* × (ℤ / (p − 1)ℤ)</span> and define <span class="math display">\mathcal{K} = \lbrace{(p, g, d, y) : y = g^d \mod p}\rbrace.</span></p></li>
+<li><p>For <span class="math inline">k = (p,g,d,y)</span>, and for a secrete random <span class="math inline">r ∈ (ℤ / (p−1)ℤ)^*</span>, define <span class="math display">sig_k(x; r) = (y1,y2),</span> where <span class="math display">y_1 = g^r \mod p, \quad \text{and} \quad
+y_2 = (x − d y_1) r^{−1} \mod p−1.</span> For <span class="math inline">x, y_1 ∈ (ℤ / pℤ)^*</span> and <span class="math inline">y_2 ∈ ℤ / (p−1)ℤ</span>, define <span class="math display">ver_k(x, (y_1, y_2)) = \mathtt{true} ⇔ y^{y_1}(y_1)^{y_2} ≡ g^x \mod p</span></p></li>
+<li><p>Public key is <strong><span class="math inline">(p, g, y)</span></strong> and private key is <strong><span class="math inline">d</span></strong>.</p></li>
+</ul>
+<h2 data-number="21.2" id="example-of-misuse-1" data-number="21.2"><span class="header-section-number">21.2</span> Example of misuse</h2>
+<p>If the same <span class="math inline">k</span> is used twice a total break is possible.</p>
+<p><em>Proof:</em> Let <span class="math inline">(y_1, y_2)</span> a signature of <span class="math inline">x_1</span> and <span class="math inline">(y_1, z_2)</span> a signature of <span class="math inline">x_2</span>. Then <span class="math display">y^{y1} (y_1)^{y_2} ≡ g^{x_1} \mod p, \quad
+  y^{y1} (y_1)^{z_2} ≡ g^{x_2} \mod p,</span> thus, <span class="math display">g^{x_1 − x_2} ≡ (y_1)^{y_2 − z_2)} mod p.</span></p>
+<p>Substituting <span class="math inline">y_1 \equiv g^r \mod p</span> yields an equation in the single <strong>unknown <span class="math inline">r</span></strong>. By Fermat’s little theorem this is equivalent to <span id="eq:elgamal-misuse2"><span class="math display">x_1 - x_2 \equiv r (y_2 - z_2) \mod p - 1.\qquad(3)</span></span></p>
+<p>If <span class="math inline">(y_2 - z_2)</span> is invertible <span class="math inline">\mod p - 1</span>, we divide by <span class="math inline">(y_2 - z_2)</span> and are done. Otherwise, set <span class="math inline">s := \gcd(y_2 - z-2, p - 1)</span> and note that <span class="math inline">s \mid x_1 - x_2</span>. We set <span class="math display">x&#39; := \frac{x_1 - x_2}{s}, \quad
+y&#39; := \frac{y_2 - z_2}{s}, \quad p&#39; := \frac{p - 1}{s}.
+</span> Then eq. <a href="#eq:elgamal-misuse2">3</a> becomes <span class="math display">x&#39; \equiv r y&#39; \mod p&#39;.</span> Since <span class="math inline">\gcd(y&#39;, p&#39;) = 1</span>, we obtain <span class="math inline">r \equiv x&#39; (y&#39;)^{-1} \mod p&#39;</span>.</p>
+<p>This yields <span class="math inline">s</span> possible values for <span class="math inline">r \mod p - 1</span>, namely <span class="math display">r_i := x&#39;(y&#39;)^{-1} + i p&#39; \mod p − 1, \text{ for } 0 ≤ i ≤ s − 1.</span> The correct value is obtained by testing <span class="math display">y_1 \equiv g^{r_i} \mod p.</span></p>
+<p>To determine the private key <span class="math inline">d</span>, we modify the defining equation for <span class="math inline">y_2</span> and obtain <span class="math display">d y_1 \equiv x - r y_2 \mod p - 1.</span> If <span class="math inline">y_1</span> is invertible <span class="math inline">\mod p -1</span> we divide by <span class="math inline">y_1</span>, otherwise we proceed as above.</p>
+<h2 data-number="21.3" id="definition-ecdsa-hash-and-sign" data-number="21.3"><span class="header-section-number">21.3</span> Definition: ECDSA, hash-and-sign</h2>
+<ul>
+<li><span class="math inline">p</span> prime, <span class="math inline">\mathbf{k} = (ℤ / pℤ)</span>, <span class="math inline">E = E(\mathbf{k})</span>, <span class="math inline">P ∈ E</span> of prime order <span class="math inline">q</span>.</li>
+<li><span class="math inline">\mathcal{P} = \lbrace{0, 1}\rbrace^∗, \mathcal{A} = (ℤ/qℤ)^* × (ℤ/qℤ)^*</span> and <span class="math display">\mathcal{K} = \lbrace{(p, q, E, P, d, Q) : Q = dP}\rbrace,</span> where <span class="math inline">0 ≤ d ≤ q - 1</span>.</li>
+<li>For <span class="math inline">k = (p, q, E, P, d Q)</span> and a secret random <span class="math inline">r ∈ \lbrace 1, …, q-1\rbrace</span>, define <span class="math display">sig_{k}(x, r) = (t, s)</span> where <span class="math inline">rP = (u, v)</span> and <span class="math display">\begin{aligned}
+t &amp;= u \mod q, \\
+s &amp;= r^{-1}(h(x) + dt) \mod q.
+\end{aligned}</span></li>
+<li>If either <span class="math inline">t = 0</span> or <span class="math inline">s = 0</span>, a new random value of <span class="math inline">r</span> is chosen.</li>
+<li>The public key is <strong><span class="math inline">(p, q, E, P, Q)</span></strong> and the private key is <strong><span class="math inline">d</span></strong>.</li>
+</ul>
+<h3 data-number="21.3.1" id="verification-of-ecdsa" data-number="21.3.1"><span class="header-section-number">21.3.1</span> Verification of ECDSA</h3>
+<p>For <span class="math inline">x ∈ \lbrace 0, 1\rbrace^*</span> and <span class="math inline">t, s ∈ (ℤ / qℤ)^*</span>, we compute <span class="math display">\begin{aligned}
+ w &amp;= s^{-1} \mod{q} \\
+ i &amp;= wh(x) \mod{q} \\
+ j &amp;= wt \mod{q} \\
+ (u, v) &amp;= iP + jQ
+ \end{aligned}</span> and define <span class="math display">ver_{k}(x, (t, s)) = \mathtt{true} ⇔ u \mod q = t</span></p>
+<p>To prove correctness, show that <span class="math inline">iP + jQ = rP</span>.</p>
 <h1 data-number="22" id="digital-currency" data-number="22"><span class="header-section-number">22</span> Digital currency</h1>
 <blockquote>
 <p>Digital currency: definition and security requirements. Distributed ledgers. Blockchain. Security assumptions underlying the generation of the bitcoin address.</p>
