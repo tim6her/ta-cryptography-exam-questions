@@ -7,6 +7,8 @@ linkReferences: true
 link-citations: true
 ...
 
+All quotes are from @Arzhantseva2019.
+
 # Cryptography principles / Basic model for secrecy / Cryptosystem for secrecy
 
 > Cryptography principles definitions, (non) examples. Basic cryptography
@@ -292,7 +294,7 @@ theorem as in @sec:rsa.
    To sign $x = x_1 x_2$ trick Alice into signing $x_1, x_2$ to obtain
    $y_1, y_2$ and compute $(x, y) = (x, y_1 y_2)$.
 
-# DSS with hashing
+# DSS with hashing{#sec:dss-with-hashing}
 
 > DSS with hashing. Hash functions from block ciphers: definition and example,
 > with proof (the example where $(x, y) → a^x b^y$).
@@ -339,6 +341,77 @@ SHA-1 is an example of such a hash function.
 # DSS and Public-key cryptosystems
 
 > DSS and Public-key cryptosystem: sign-then-encrypt versus encrypt-versus-sign.
+
+## Problem
+
+> The use of symmetric keys involves an implicit indication of the
+> originator and intended recipient of a message. By their very nature, this is
+> not the case for use of public keys. — [@Martin2012, p. 244]
+
+## Sign-then-encrypt
+
+### Algorithm
+
+1. Given $x ∈ \mathcal{P}$, Alice computes her signature
+   $y = sig_{d_{Alice}}(x)$.
+2. She encrypts both $x$ and y using Bob’s public key $z = E_{e_{Bob}}(x , y)$.
+3. She sends $z$ to Bob, who decrypts it $D_{d_{Bob}}(z) = (x, y)$.
+4. He uses her public verification function to check whether
+   $ver_{e_{Alice}} (x , y) = \mathtt{true}$.
+
+### Attack
+
+Bob can forward messages form Alice to Charlie pretending that Alice wrote them
+directly.
+
+1. Alice sends Bob a signed and encrypted Message $z$.
+2. Bob decrypts the message and recovers the signature
+   $D_{d_{Bob}}(z) = (x, y)$.
+3. Bob encrypts the message and the signature using Charlie's public key
+   $\tilde{z} = E_{e_{Charlie}}(x , y)$
+4. Bob sends the message to Charlie, who decrypts it and verifies Alice's
+   signature $ver_{e_{Alice}} (x , y) = \mathtt{true}$.
+
+Charlie thinks
+
+*  that Alice was the origin of the data and (**true**)
+*  that nobody except Alice knows the content of the message (**false**)
+
+## Solution
+
+Include the receiver's identity in the signed data.
+
+## Encrypt-then-sign
+
+### Algorithm
+
+1. Alice encrypts the plaintext using Bob's public key $c = E_{e_{Bob}}(x)$
+2. She then signs the ciphertext $y = sig_{d_{Alice}}(c)$.
+3. She sends both $c$ and $y$ to Bob, who decrypts the ciphertext
+  $D_{d_{Bob}}(c) = (x)$.
+4. He uses her public verification function to check whether
+   $ver_{e_{Alice}} (x , y) = \mathtt{true}$.
+
+## Attack
+
+Charlie can intercept the message from Alice to Bob and pretend the message came
+from him.
+
+1. Charlie intercepts the message form Alice to Bob and signs the ciphertext
+   $\tilde{y} = sig_{d_{Charlie}}(c)$
+2. Charlie sends both $c$ and $\tilde{y}$ to Bob, who decrypts the ciphertext
+  $D_{d_{Bob}}(c) = (x)$.
+3. Bob uses Charlie's public verification function to check whether
+   $ver_{e_{Charlie}} (x , y) = \mathtt{true}$.
+
+Bob thinks
+
+*  that Charlie was the origin of the data and (**false**)
+*  that nobody except Charlie knows the content of the message. (**false**)
+
+## Solution
+
+Include the sender's identity in the encrypted data.
 
 # ElGamal variant of DSS (Definition)
 
@@ -389,5 +462,9 @@ SHA-1 is an example of such a hash function.
 > Describe Shanks algorithm, give examples of its use and outline how to use
 > Shanks Algorithm to compute the order of an elliptic curve of prime order in
 > combination with Hasse’s bound.
+
+# TODO-s:
+
+- [ ] @Sec:dss-with-hashing: Example where $(x, y) → a^x b^y$.
 
 ## References
