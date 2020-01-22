@@ -418,7 +418,93 @@ Include the sender's identity in the encrypted data.
 > ElGamal variant of DSS: definition and correctness. Security assumptions.
 > Example of misuse (with proof).
 
-# ElGamal variant of DSS (Misuse)
+## Definition
+
+*  Let $p$ be a prime and $g$ a primitive element $\mod p$.
+*  Let $\mathcal{P} = (ℤ / pℤ)^*, \mathcal{A} = (ℤ / pℤ)^* × (ℤ / (p − 1)ℤ)$
+   and define
+   $$\mathcal{K} = \lbrace{(p, g, d, y) : y = g^d \mod p}\rbrace.$$
+*  For $k = (p,g,d,y)$, and for a secrete random $r ∈ (ℤ / (p−1)ℤ)^*$, define
+   $$sig_k(x; r) = (y1,y2),$$
+   where
+   $$y_1 = g^r \mod p, \quad \text{and} \quad
+   y_2 = (x − d y_1) r^{−1} \mod p−1.$$
+   For $x, y_1 ∈ (ℤ / pℤ)^*$ and $y_2 ∈ ℤ / (p−1)ℤ$, define
+   $$ver_k(x, (y_1, y_2)) = \mathtt{true} ⇔ y^{y_1}(y_1)^{y_2} ≡ g^x \mod p$$
+
+*  Public key is **$(p, g, y)$** and private key is **$d$**.
+
+## Correctness
+
+We have to prove that
+$$ver_k(x, sig_k(x; r)) = \mathtt{true}
+$$
+for all $k ∈ \mathcal{K}$, all $x ∈ \mathcal{P}$, and all $r ∈ (ℤ / (p−1)ℤ)^*$.
+Thus,
+$$y^{y_1} (y_1)^{y_2} ≡ (g^d)^{y_1}g^{r y_2}$$
+{#eq:elgamal}
+
+Since $g$ is primitive $\mod p$ it has order $p - 1$. Therefore,
+$$g^{y_2} ≡ g^{(x - d y_1) r^{-1}} \mod p,$$
+since
+$$y_2 ≡ (x - d y_1) r^{-1} \mod p-1.$$
+
+Plugging this into the RHS of @eq:elgamal yields
+$$y^{y_1} (y_1)^{y_2} ≡ g^{d y_1}g^{r (x - d y_1) r^{-1}} ≡ g^x \mod p$$
+as claimed.
+
+## Security assumptions
+
+1. Approach: Choose arbitrary $y_1 ∈ (ℤ / pℤ)^*$ and try to find
+   $y_2 ∈ (ℤ / (p - 1) ℤ)$. To do this one needs to solve
+   $$y_2 ≡ \log_{y_1} g^x y^{-y_1} \mod p,$$
+   i.e. one solves the DLP in $(ℤ / pℤ)^*$.
+
+2. Approach: Choose arbitrary $y_2 ∈ (ℤ / (p - 1) ℤ)$ and try to find
+   $y_1 ∈ (ℤ / pℤ)^*$. To do this one needs to solve
+   $$y^{y_1}(y_1)^{y_2} \equiv g^x \mod p.$$
+
+**Assumption:** Both problems do not lie in BPP.
+
+## Example of misuse
+
+If the same $k$ is used twice a total break is possible.
+
+*Proof:* Let $(y_1, y_2)$ a signature of $x_1$ and $(y_1, z_2)$ a signature of
+$x_2$. Then
+$$y^{y1} (y_1)^{y_2} ≡ g^{x_1} \mod p, \quad
+  y^{y1} (y_1)^{z_2} ≡ g^{x_2} \mod p,$$
+ thus,
+ $$g^{x_1 − x_2} ≡ (y_1)^{y_2 − z_2)} mod p.$$
+
+Substituting $y_1 \equiv g^r \mod p$ yields an equation in the single
+**unknown $r$**. By Fermat's little theorem this is equivalent to
+$$x_1 - x_2 \equiv r (y_2 - z_2) \mod p - 1.$$
+{#eq:elgamal-misuse}
+
+If $(y_2 - z_2)$ is invertible $\mod p - 1$, we divide by $(y_2 - z_2)$ and are
+done. Otherwise, set $s := \gcd(y_2 - z-2, p - 1)$ and note that
+$s \mid x_1 - x_2$. We set
+$$x' := \frac{x_1 - x_2}{s}, \quad
+y' := \frac{y_2 - z_2}{s}, \quad p' := \frac{p - 1}{s}.
+$$
+Then @eq:elgamal-misuse becomes
+$$x' \equiv r y' \mod p'.$$
+Since $\gcd(y', p') = 1$, we obtain $r \equiv x' (y')^{-1} \mod p'$.
+
+This yields $s$ possible values for $r \mod p - 1$, namely
+$$r_i := x'(y')^{-1} + i p' \mod p − 1, \text{ for } 0 ≤ i ≤ s − 1.$$
+The correct value is obtained by testing
+$$y_1 \equiv g^{r_i} \mod p.$$
+
+To determine the private key $d$, we modify the defining equation for $y_2$ and
+obtain
+$$d y_1 \equiv x - r y_2 \mod p - 1.$$
+If $y_1$ is invertible $\mod p -1$ we divide by $y_1$, otherwise we proceed as
+above.
+
+
+# ElGamal and ECDSA variants of DSS
 
 > ElGamal variant of DSS: example of misuse (with proof). ECDSA: definition and
 > correctness.

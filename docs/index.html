@@ -79,7 +79,7 @@
                                                         <li><a href="#sec:dss-with-hashing"><span class="toc-section-number">18</span> DSS with hashing</a></li>
                                                         <li><a href="#dss-and-public-key-cryptosystems"><span class="toc-section-number">19</span> DSS and Public-key cryptosystems</a></li>
                                                         <li><a href="#elgamal-variant-of-dss-definition"><span class="toc-section-number">20</span> ElGamal variant of DSS (Definition)</a></li>
-                                                        <li><a href="#elgamal-variant-of-dss-misuse"><span class="toc-section-number">21</span> ElGamal variant of DSS (Misuse)</a></li>
+                                                        <li><a href="#elgamal-and-ecdsa-variants-of-dss"><span class="toc-section-number">21</span> ElGamal and ECDSA variants of DSS</a></li>
                                                         <li><a href="#digital-currency"><span class="toc-section-number">22</span> Digital currency</a></li>
                                                         <li><a href="#bitcoin-transactions"><span class="toc-section-number">23</span> Bitcoin transactions</a></li>
                                                         <li><a href="#bit-generators"><span class="toc-section-number">24</span> Bit generators</a></li>
@@ -425,7 +425,36 @@ ver_k(x, y) = \mathtt{true} &amp; ⇔ y = sig_k(x) = x^d \mod n\\
 <blockquote>
 <p>ElGamal variant of DSS: definition and correctness. Security assumptions. Example of misuse (with proof).</p>
 </blockquote>
-<h1 data-number="21" id="elgamal-variant-of-dss-misuse" data-number="21"><span class="header-section-number">21</span> ElGamal variant of DSS (Misuse)</h1>
+<h2 data-number="20.1" id="definition-3" data-number="20.1"><span class="header-section-number">20.1</span> Definition</h2>
+<ul>
+<li><p>Let <span class="math inline">p</span> be a prime and <span class="math inline">g</span> a primitive element <span class="math inline">\mod p</span>.</p></li>
+<li><p>Let <span class="math inline">\mathcal{P} = (ℤ / pℤ)^*, \mathcal{A} = (ℤ / pℤ)^* × (ℤ / (p − 1)ℤ)</span> and define <span class="math display">\mathcal{K} = \lbrace{(p, g, d, y) : y = g^d \mod p}\rbrace.</span></p></li>
+<li><p>For <span class="math inline">k = (p,g,d,y)</span>, and for a secrete random <span class="math inline">r ∈ (ℤ / (p−1)ℤ)^*</span>, define <span class="math display">sig_k(x; r) = (y1,y2),</span> where <span class="math display">y_1 = g^r \mod p, \quad \text{and} \quad
+y_2 = (x − d y_1) r^{−1} \mod p−1.</span> For <span class="math inline">x, y_1 ∈ (ℤ / pℤ)^*</span> and <span class="math inline">y_2 ∈ ℤ / (p−1)ℤ</span>, define <span class="math display">ver_k(x, (y_1, y_2)) = \mathtt{true} ⇔ y^{y_1}(y_1)^{y_2} ≡ g^x \mod p</span></p></li>
+<li><p>Public key is <strong><span class="math inline">(p, g, y)</span></strong> and private key is <strong><span class="math inline">d</span></strong>.</p></li>
+</ul>
+<h2 data-number="20.2" id="correctness" data-number="20.2"><span class="header-section-number">20.2</span> Correctness</h2>
+<p>We have to prove that <span class="math display">ver_k(x, sig_k(x; r)) = \mathtt{true}
+</span> for all <span class="math inline">k ∈ \mathcal{K}</span>, all <span class="math inline">x ∈ \mathcal{P}</span>, and all <span class="math inline">r ∈ (ℤ / (p−1)ℤ)^*</span>. Thus, <span id="eq:elgamal"><span class="math display">y^{y_1} (y_1)^{y_2} ≡ (g^d)^{y_1}g^{r y_2}\qquad(1)</span></span></p>
+<p>Since <span class="math inline">g</span> is primitive <span class="math inline">\mod p</span> it has order <span class="math inline">p - 1</span>. Therefore, <span class="math display">g^{y_2} ≡ g^{(x - d y_1) r^{-1}} \mod p,</span> since <span class="math display">y_2 ≡ (x - d y_1) r^{-1} \mod p-1.</span></p>
+<p>Plugging this into the RHS of eq. <a href="#eq:elgamal">1</a> yields <span class="math display">y^{y_1} (y_1)^{y_2} ≡ g^{d y_1}g^{r (x - d y_1) r^{-1}} ≡ g^x \mod p</span> as claimed.</p>
+<h2 data-number="20.3" id="security-assumptions" data-number="20.3"><span class="header-section-number">20.3</span> Security assumptions</h2>
+<ol type="1">
+<li><p>Approach: Choose arbitrary <span class="math inline">y_1 ∈ (ℤ / pℤ)^*</span> and try to find <span class="math inline">y_2 ∈ (ℤ / (p - 1) ℤ)</span>. To do this one needs to solve <span class="math display">y_2 ≡ \log_{y_1} g^x y^{-y_1} \mod p,</span> i.e. one solves the DLP in <span class="math inline">(ℤ / pℤ)^*</span>.</p></li>
+<li><p>Approach: Choose arbitrary <span class="math inline">y_2 ∈ (ℤ / (p - 1) ℤ)</span> and try to find <span class="math inline">y_1 ∈ (ℤ / pℤ)^*</span>. To do this one needs to solve <span class="math display">y^{y_1}(y_1)^{y_2} \equiv g^x \mod p.</span></p></li>
+</ol>
+<p><strong>Assumption:</strong> Both problems do not lie in BPP.</p>
+<h2 data-number="20.4" id="example-of-misuse" data-number="20.4"><span class="header-section-number">20.4</span> Example of misuse</h2>
+<p>If the same <span class="math inline">k</span> is used twice a total break is possible.</p>
+<p><em>Proof:</em> Let <span class="math inline">(y_1, y_2)</span> a signature of <span class="math inline">x_1</span> and <span class="math inline">(y_1, z_2)</span> a signature of <span class="math inline">x_2</span>. Then <span class="math display">y^{y1} (y_1)^{y_2} ≡ g^{x_1} \mod p, \quad
+  y^{y1} (y_1)^{z_2} ≡ g^{x_2} \mod p,</span> thus, <span class="math display">g^{x_1 − x_2} ≡ (y_1)^{y_2 − z_2)} mod p.</span></p>
+<p>Substituting <span class="math inline">y_1 \equiv g^r \mod p</span> yields an equation in the single <strong>unknown <span class="math inline">r</span></strong>. By Fermat’s little theorem this is equivalent to <span id="eq:elgamal-misuse"><span class="math display">x_1 - x_2 \equiv r (y_2 - z_2) \mod p - 1.\qquad(2)</span></span></p>
+<p>If <span class="math inline">(y_2 - z_2)</span> is invertible <span class="math inline">\mod p - 1</span>, we divide by <span class="math inline">(y_2 - z_2)</span> and are done. Otherwise, set <span class="math inline">s := \gcd(y_2 - z-2, p - 1)</span> and note that <span class="math inline">s \mid x_1 - x_2</span>. We set <span class="math display">x&#39; := \frac{x_1 - x_2}{s}, \quad
+y&#39; := \frac{y_2 - z_2}{s}, \quad p&#39; := \frac{p - 1}{s}.
+</span> Then eq. <a href="#eq:elgamal-misuse">2</a> becomes <span class="math display">x&#39; \equiv r y&#39; \mod p&#39;.</span> Since <span class="math inline">\gcd(y&#39;, p&#39;) = 1</span>, we obtain <span class="math inline">r \equiv x&#39; (y&#39;)^{-1} \mod p&#39;</span>.</p>
+<p>This yields <span class="math inline">s</span> possible values for <span class="math inline">r \mod p - 1</span>, namely <span class="math display">r_i := x&#39;(y&#39;)^{-1} + i p&#39; \mod p − 1, \text{ for } 0 ≤ i ≤ s − 1.</span> The correct value is obtained by testing <span class="math display">y_1 \equiv g^{r_i} \mod p.</span></p>
+<p>To determine the private key <span class="math inline">d</span>, we modify the defining equation for <span class="math inline">y_2</span> and obtain <span class="math display">d y_1 \equiv x - r y_2 \mod p - 1.</span> If <span class="math inline">y_1</span> is invertible <span class="math inline">\mod p -1</span> we divide by <span class="math inline">y_1</span>, otherwise we proceed as above.</p>
+<h1 data-number="21" id="elgamal-and-ecdsa-variants-of-dss" data-number="21"><span class="header-section-number">21</span> ElGamal and ECDSA variants of DSS</h1>
 <blockquote>
 <p>ElGamal variant of DSS: example of misuse (with proof). ECDSA: definition and correctness.</p>
 </blockquote>
