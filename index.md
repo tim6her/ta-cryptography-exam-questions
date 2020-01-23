@@ -126,12 +126,92 @@ $$\mathbb{E}[X] = \sum_{i = 1}^n i \frac{1}{n} =
    \frac{n \; (n - 1)}{2} = \frac{2^k + 1}{2} ∼ 2^{k - 1}$$
 
 
-# Examples of symmetric cryptosystems
+# Examples of symmetric cryptosystems {#sec:symmetric-cs}
 
 > Examples of symmetric cryptosystems: Caesar and Substitution ciphers. The
 > letter frequency analysis. Monoalphabetic and polyalphabetic cyphers.
 > Vigenère cipher. If the given key of a Vigenère Cipher has repeated letters,
 > does it make it any easier to break?
+
+## Caeser Cipher
+
+Replace each alphabet by another alphabet which is ‘shifted’ by some fixed
+number between 0 and 25. Key = ’secret shift number’. Length=1
+
+Formally, we identify $\lbrace \mathtt{A, B, C, …, Z} \rbrace \cong ℤ / 26 ℤ$.
+Then $\mathcal{P} = \lbrace{(a_0, …,a_n) \mid a_i ∈ ℤ / 26 ℤ, n ∈ ℕ}\rbrace$
+and
+$$\begin{aligned}
+E_k(a_1, …, a_n) &= (a_0 + k, …, a_n + k)\\
+D_k(c_1, …, c_n) &= (c_0 - k, …, c_n - k).
+\end{aligned}
+$$
+(all operations are to be understood $\mod 26$.)
+
+![The Caeser Cipher shifts all letters by a fixed constant [@CaeserCipher2020]](./imgs/caeser.png){#fig:caeser}
+
+## Simple Substitution Cipher
+
+Replace each alphabet by another alphabet which is its random permutation. Key =
+a permutation of 26 letters. Length = 26
+
+Formally, we identify $\lbrace \mathtt{A, B, C, …, Z} \rbrace \cong ℤ / 26 ℤ$.
+Then $\mathcal{P} = \lbrace{(a_0, …,a_n) \mid a_i ∈ ℤ / 26 ℤ, n ∈ ℕ}\rbrace$
+and
+$$\begin{aligned}
+E_k(a_1, …, a_n) &= (σ(a_0), …, σ(a_n))\\
+D_k(c_1, …, c_n) &= (σ^{-1}(c_0), …, σ^{-1}(c_n)),
+\end{aligned}$$
+where $σ ∈ Sym(26)$ is the encryption/decryption key.
+
+Caeser Cipher is special case of Simple Substitution Cipher, where $σ$ is a
+cyclic permutation.
+
+The total key space has size $26!$, which is greater than the number of stars in
+the universe.
+
+Since every letter is encrypted by a unique letter, SSC is an example of a
+**monoalphabetic** cipher.
+
+They are easily breakable by **letter frequency analysis**:
+
+If the plaintext is known to be written in a specific language, we can compare
+letter frequencies of the language with the letter frequencies of the cipher
+text.
+
+Thus, **large keyspace is necessary but not sufficient** for security!
+
+![Comparing letter frequencies of known language with ciphertext [@FrequencyAnalysis2020]](./imgs/frequency-analysis.png){#fig:frequency-analysis}
+
+## Vigenère Cipher
+
+Generate a key by repeating a given key until it matches the length of the
+plaintext. Replace each plaintext letter by another letter using a Caesar
+Cipher, whose key is the number associated to the corresponding letter of the
+generated key. Key = a string of letters.
+
+Formally, we identify $\lbrace \mathtt{A, B, C, …, Z} \rbrace \cong ℤ / 26 ℤ$.
+If $l$ is the length of the key, then
+$\mathcal{P} = \lbrace{(a_0, …,a_n) \mid a_i ∈ ℤ / 26 ℤ, n ∈ ℕ}\rbrace$
+and
+$$\begin{aligned}
+E_k(a_1, …, a_n) &= (a_1 + k_{0 \mod l}, …, a_n + k_{n \mod l})\\
+D_k(c_1, …, c_n) &= (c_1 - k_{0 \mod l}, …, c_n - k_{n \mod l}).
+\end{aligned}
+$$
+(all operations are to be understood $\mod 26$.)
+
+Vigenère Cipher is an example of **polyalphabetic** ciphers (each given letter
+can be encrypted into $l$ different letters).
+
+The naive letter frequency analysis does not work, as the same letter is
+encrypted by different letters depending on its position.
+
+If the key length is known, the Vigenère Cipher can be broken, breaking a
+sequence of Caesar Ciphers in strict rotation.
+
+The key length can be guessed using simple analyses of the cipher text (Kasiski
+test, index of coincidence).
 
 # Computational complexity
 
@@ -637,5 +717,7 @@ For $x ∈ \lbrace 0, 1\rbrace^*$ and $t, s ∈ (ℤ / qℤ)^*$, we compute
 # TODO-s:
 
 - [ ] @Sec:dss-with-hashing: Example where $(x, y) → a^x b^y$.
+- [ ] @Sec:symmetric-cs: If the given key of a Vigenère Cipher has repeated
+  letters, does it make it any easier to break?
 
 ## References

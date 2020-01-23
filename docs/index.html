@@ -61,7 +61,7 @@
                                                         <ul>
                                                         <li><a href="#cryptography-principles-basic-model-for-secrecy-cryptosystem-for-secrecy"><span class="toc-section-number">1</span> Cryptography principles / Basic model for secrecy / Cryptosystem for secrecy</a></li>
                                                         <li><a href="#attacks-on-encryption-algorithms"><span class="toc-section-number">2</span> Attacks on encryption algorithms</a></li>
-                                                        <li><a href="#examples-of-symmetric-cryptosystems"><span class="toc-section-number">3</span> Examples of symmetric cryptosystems</a></li>
+                                                        <li><a href="#sec:symmetric-cs"><span class="toc-section-number">3</span> Examples of symmetric cryptosystems</a></li>
                                                         <li><a href="#computational-complexity"><span class="toc-section-number">4</span> Computational complexity</a></li>
                                                         <li><a href="#three-types-of-security"><span class="toc-section-number">5</span> Three types of security</a></li>
                                                         <li><a href="#sec:rsa"><span class="toc-section-number">6</span> RSA cryptosystem</a></li>
@@ -211,10 +211,46 @@
 <p>If Size = <span class="math inline">n = 2k</span>, then, on average, one needs <span class="math inline">∼ 2k − 1</span> attempts to find the correct decryption key:</p>
 <p><span class="math display">\mathbb{E}[X] = \sum_{i = 1}^n i \frac{1}{n} =
    \frac{n \; (n - 1)}{2} = \frac{2^k + 1}{2} ∼ 2^{k - 1}</span></p>
-<h1 data-number="3" id="examples-of-symmetric-cryptosystems" data-number="3"><span class="header-section-number">3</span> Examples of symmetric cryptosystems</h1>
+<h1 data-number="3" id="sec:symmetric-cs" data-number="3"><span class="header-section-number">3</span> Examples of symmetric cryptosystems</h1>
 <blockquote>
 <p>Examples of symmetric cryptosystems: Caesar and Substitution ciphers. The letter frequency analysis. Monoalphabetic and polyalphabetic cyphers. Vigenère cipher. If the given key of a Vigenère Cipher has repeated letters, does it make it any easier to break?</p>
 </blockquote>
+<h2 data-number="3.1" id="caeser-cipher" data-number="3.1"><span class="header-section-number">3.1</span> Caeser Cipher</h2>
+<p>Replace each alphabet by another alphabet which is ‘shifted’ by some fixed number between 0 and 25. Key = ’secret shift number’. Length=1</p>
+<p>Formally, we identify <span class="math inline">\lbrace \mathtt{A, B, C, …, Z} \rbrace \cong ℤ / 26 ℤ</span>. Then <span class="math inline">\mathcal{P} = \lbrace{(a_0, …,a_n) \mid a_i ∈ ℤ / 26 ℤ, n ∈ ℕ}\rbrace</span> and <span class="math display">\begin{aligned}
+E_k(a_1, …, a_n) &amp;= (a_0 + k, …, a_n + k)\\
+D_k(c_1, …, c_n) &amp;= (c_0 - k, …, c_n - k).
+\end{aligned}
+</span> (all operations are to be understood <span class="math inline">\mod 26</span>.)</p>
+<figure>
+<img src="./imgs/caeser.png" id="fig:caeser" alt="" /><figcaption>Figure 2: The Caeser Cipher shifts all letters by a fixed constant <span class="citation" data-cites="CaeserCipher2020">(“Caesar Cipher in Cryptography - Geeksforgeeks” <a href="#ref-CaeserCipher2020" role="doc-biblioref">2020</a>)</span></figcaption>
+</figure>
+<h2 data-number="3.2" id="simple-substitution-cipher" data-number="3.2"><span class="header-section-number">3.2</span> Simple Substitution Cipher</h2>
+<p>Replace each alphabet by another alphabet which is its random permutation. Key = a permutation of 26 letters. Length = 26</p>
+<p>Formally, we identify <span class="math inline">\lbrace \mathtt{A, B, C, …, Z} \rbrace \cong ℤ / 26 ℤ</span>. Then <span class="math inline">\mathcal{P} = \lbrace{(a_0, …,a_n) \mid a_i ∈ ℤ / 26 ℤ, n ∈ ℕ}\rbrace</span> and <span class="math display">\begin{aligned}
+E_k(a_1, …, a_n) &amp;= (σ(a_0), …, σ(a_n))\\
+D_k(c_1, …, c_n) &amp;= (σ^{-1}(c_0), …, σ^{-1}(c_n)),
+\end{aligned}</span> where <span class="math inline">σ ∈ Sym(26)</span> is the encryption/decryption key.</p>
+<p>Caeser Cipher is special case of Simple Substitution Cipher, where <span class="math inline">σ</span> is a cyclic permutation.</p>
+<p>The total key space has size <span class="math inline">26!</span>, which is greater than the number of stars in the universe.</p>
+<p>Since every letter is encrypted by a unique letter, SSC is an example of a <strong>monoalphabetic</strong> cipher.</p>
+<p>They are easily breakable by <strong>letter frequency analysis</strong>:</p>
+<p>If the plaintext is known to be written in a specific language, we can compare letter frequencies of the language with the letter frequencies of the cipher text.</p>
+<p>Thus, <strong>large keyspace is necessary but not sufficient</strong> for security!</p>
+<figure>
+<img src="./imgs/frequency-analysis.png" id="fig:frequency-analysis" alt="" /><figcaption>Figure 3: Comparing letter frequencies of known language with ciphertext <span class="citation" data-cites="FrequencyAnalysis2020">(“Frequency Analysis: Breaking the Code - Crypto Corner” <a href="#ref-FrequencyAnalysis2020" role="doc-biblioref">2020</a>)</span></figcaption>
+</figure>
+<h2 data-number="3.3" id="vigenère-cipher" data-number="3.3"><span class="header-section-number">3.3</span> Vigenère Cipher</h2>
+<p>Generate a key by repeating a given key until it matches the length of the plaintext. Replace each plaintext letter by another letter using a Caesar Cipher, whose key is the number associated to the corresponding letter of the generated key. Key = a string of letters.</p>
+<p>Formally, we identify <span class="math inline">\lbrace \mathtt{A, B, C, …, Z} \rbrace \cong ℤ / 26 ℤ</span>. If <span class="math inline">l</span> is the length of the key, then <span class="math inline">\mathcal{P} = \lbrace{(a_0, …,a_n) \mid a_i ∈ ℤ / 26 ℤ, n ∈ ℕ}\rbrace</span> and <span class="math display">\begin{aligned}
+E_k(a_1, …, a_n) &amp;= (a_1 + k_{0 \mod l}, …, a_n + k_{n \mod l})\\
+D_k(c_1, …, c_n) &amp;= (c_1 - k_{0 \mod l}, …, c_n - k_{n \mod l}).
+\end{aligned}
+</span> (all operations are to be understood <span class="math inline">\mod 26</span>.)</p>
+<p>Vigenère Cipher is an example of <strong>polyalphabetic</strong> ciphers (each given letter can be encrypted into <span class="math inline">l</span> different letters).</p>
+<p>The naive letter frequency analysis does not work, as the same letter is encrypted by different letters depending on its position.</p>
+<p>If the key length is known, the Vigenère Cipher can be broken, breaking a sequence of Caesar Ciphers in strict rotation.</p>
+<p>The key length can be guessed using simple analyses of the cipher text (Kasiski test, index of coincidence).</p>
 <h1 data-number="4" id="computational-complexity" data-number="4"><span class="header-section-number">4</span> Computational complexity</h1>
 <blockquote>
 <p>Computational complexity of basic mathematical operations and of the exhaustive key search attack. Complexity classes of algorithms.</p>
@@ -531,11 +567,19 @@ s &amp;= r^{-1}(h(x) + dt) \mod q.
 <ul class="task-list">
 <li><input type="checkbox" disabled="" />
 Sec. <a href="#sec:dss-with-hashing">18</a>: Example where <span class="math inline">(x, y) → a^x b^y</span>.</li>
+<li><input type="checkbox" disabled="" />
+Sec. <a href="#sec:symmetric-cs">3</a>: If the given key of a Vigenère Cipher has repeated letters, does it make it any easier to break?</li>
 </ul>
 <h2 class="unnumbered" data-number="" id="references" class="unnumbered" data-number="">References</h2>
 <div id="refs" class="references hanging-indent" role="doc-bibliography">
 <div id="ref-Arzhantseva2019">
 <p>Arzhantseva, Goulnara. 2019. “Exam Questions.” <a href="https://www.mat.univie.ac.at/~gagt/crypto2019/ExamQuestions.pdf">https://www.mat.univie.ac.at/~gagt/crypto2019/ExamQuestions.pdf</a>.</p>
+</div>
+<div id="ref-CaeserCipher2020">
+<p>“Caesar Cipher in Cryptography - Geeksforgeeks.” 2020. January 23, 2020. <a href="https://www.geeksforgeeks.org/caesar-cipher-in-cryptography/">https://www.geeksforgeeks.org/caesar-cipher-in-cryptography/</a>.</p>
+</div>
+<div id="ref-FrequencyAnalysis2020">
+<p>“Frequency Analysis: Breaking the Code - Crypto Corner.” 2020. January 23, 2020. <a href="https://crypto.interactive-maths.com/frequency-analysis-breaking-the-code.html">https://crypto.interactive-maths.com/frequency-analysis-breaking-the-code.html</a>.</p>
 </div>
 <div id="ref-Martin2012">
 <p>Martin, Keith M. 2012. <em>Everyday Cryptography: Fundamental Principles and Applications</em>. Oxford University Press.</p>
@@ -543,6 +587,14 @@ Sec. <a href="#sec:dss-with-hashing">18</a>: Example where <span class="math in
 </div>
                 </div>
             </div>
+            <script>
+                  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-156699711-1', 'auto');
+  ga('send', 'pageview');
             <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
         </div>
             </body>

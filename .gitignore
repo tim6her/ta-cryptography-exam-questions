@@ -4,4 +4,5 @@
 !docs/index.pdf
 !docs/index.epub
 *.bib.bak
+*.bib.sav
 init.sh
