@@ -255,6 +255,82 @@ D_k(c_1, …, c_n) &amp;= (c_1 - k_{0 \mod l}, …, c_n - k_{n \mod l}).
 <blockquote>
 <p>Computational complexity of basic mathematical operations and of the exhaustive key search attack. Complexity classes of algorithms.</p>
 </blockquote>
+<h2 data-number="4.1" id="turing-machines" data-number="4.1"><span class="header-section-number">4.1</span> Turing Machines</h2>
+<h3 data-number="4.1.1" id="deterministic-turing-machines" data-number="4.1.1"><span class="header-section-number">4.1.1</span> Deterministic Turing machines</h3>
+<p><span class="math inline">k</span>-tape Turing machine is a triple <span class="math inline">M = (A,Q,τ)</span> satisfying:</p>
+<ul>
+<li><span class="math inline">A</span> is a finite <strong>alphabet</strong> that the <span class="math inline">k</span> tapes contain: <span class="math inline">A = \lbrace{\square, \vartriangleright, 0, 1}\rbrace</span>;</li>
+<li><span class="math inline">Q</span> is a finite set of <strong>states</strong> that includes <span class="math inline">q_{start}, q_{halt} ∈ Q</span>;</li>
+<li><span class="math inline">τ: Q × A^k → Q × A^{k−1} × \lbrace{L,S,R}\rbrace^k</span> is the <strong>transition function</strong> of <span class="math inline">M</span>.</li>
+</ul>
+<p><em>Tape</em> is function <span class="math inline">ℕ → A</span>.</p>
+<p>First tape is <strong>input</strong> tape (read-only), second to <span class="math inline">k-1</span>-st tape are <strong>work</strong> tapes, <span class="math inline">k</span>-th tape is <strong>output</strong> tape.</p>
+<p><span class="math inline">\square</span> is the <strong>blank</strong> symbol, <span class="math inline">\vartriangleright</span> is the <strong>start</strong> symbol</p>
+<p><span class="math inline">q_{start}, q_{halt}</span> are the <strong>start</strong> and <strong>halting</strong> states</p>
+<p>A <strong>register</strong> contains a current state</p>
+<p>A <strong>tape head</strong> reads/write symbols, moves Left, Right or Stays</p>
+<p>Explain these notions using fig. <a href="#fig:turing">4</a>.</p>
+<figure>
+<img src="./imgs/turing.png" id="fig:turing" alt="" /><figcaption>Figure 4: A Turing machine with 3 tapes <span class="citation" data-cites="Arora2009">(Arora and Barak <a href="#ref-Arora2009" role="doc-biblioref">2009</a>)</span></figcaption>
+</figure>
+<h3 data-number="4.1.2" id="probabilistic-turing-machine" data-number="4.1.2"><span class="header-section-number">4.1.2</span> Probabilistic Turing machine</h3>
+<p>A Turing machine that may choose at every step a move at random according to a probability distribution.</p>
+<p>Note that such a Turing machine is thus <strong>non-deterministic</strong>.</p>
+<p>A probabilistic Turing machine <span class="math inline">M</span> computes a function <span class="math inline">f: \lbrace{0, 1}\rbrace^* → \lbrace{0, 1}\rbrace^*</span> if <span class="math display">P[f(x) = M(x)] ≥ ⅔
+</span></p>
+<h2 data-number="4.2" id="running-time" data-number="4.2"><span class="header-section-number">4.2</span> Running time</h2>
+<p><span class="math inline">M</span> computes <span class="math inline">f: \lbrace{0, 1}\rbrace^* → \lbrace{0, 1}\rbrace^*</span> in <span class="math inline">T(n)</span>-time, if for every input <span class="math inline">x ∈ \lbrace{0, 1}\rbrace^*</span>, <span class="math inline">M</span> halts after at most <span class="math inline">T(|n|)</span> steps with output <span class="math inline">f(x)</span>.</p>
+<h3 data-number="4.2.1" id="running-times-of-arithmetic-operations" data-number="4.2.1"><span class="header-section-number">4.2.1</span> Running times of arithmetic operations</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Addition of two <span class="math inline">n</span>-bit numbers</td>
+<td><span class="math inline">O(n)</span></td>
+</tr>
+<tr class="even">
+<td>Multiplication of two <span class="math inline">n</span>-bit numbers</td>
+<td><span class="math inline">O(n^2)</span></td>
+</tr>
+<tr class="odd">
+<td>Raising a number to an <span class="math inline">n</span>-bit power</td>
+<td><span class="math inline">O(n^3)</span></td>
+</tr>
+<tr class="even">
+<td>Exhaustive key search for an <span class="math inline">n</span>-bit key</td>
+<td><span class="math inline">O(2^n)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 data-number="4.3" id="decidablity-and-verifiability" data-number="4.3"><span class="header-section-number">4.3</span> Decidablity and Verifiability</h2>
+<h3 data-number="4.3.1" id="decidablity" data-number="4.3.1"><span class="header-section-number">4.3.1</span> Decidablity</h3>
+<p>A language <span class="math inline">L ⊂ \lbrace{0, 1}\rbrace^*</span> is <strong>decidable</strong> if there exists a deterministic Turing machine computing <span class="math display">χ_{L}(x) := \begin{cases}
+1 &amp; \text{if } x ∈ L \\
+0 &amp; \text{if } x \not\in L
+\end{cases}.
+</span></p>
+<h3 data-number="4.3.2" id="verifiability" data-number="4.3.2"><span class="header-section-number">4.3.2</span> Verifiability</h3>
+<p>A language <span class="math inline">L ⊂ \lbrace{0, 1}\rbrace^*</span> is <strong>recursively enumerable</strong> if there exists a deterministic Turing machine computing a function <span class="math display">ν_{L}: \lbrace{0, 1}\rbrace^* \times \lbrace{0, 1}\rbrace^* →
+\lbrace{0, 1}\rbrace,
+</span> with the property that <span class="math display">x ∈ L \quad ⇔ \quad ∃ c ∈ \lbrace{0, 1}\rbrace^*: ν_{L}(x, c) = 1.</span> We call <span class="math inline">c</span> a <strong>certificate</strong> for <span class="math inline">x</span>.</p>
+<p><strong>Note:</strong> Definiton in C2 is wrong!</p>
+<h2 data-number="4.4" id="complexity-classes" data-number="4.4"><span class="header-section-number">4.4</span> Complexity classes</h2>
+<p>A problem instance <span class="math inline">x</span> lies in the <strong>complexity class</strong></p>
+<ul>
+<li><strong><span class="math inline">P</span></strong> if <span class="math inline">x</span> is solvable by a polynomial <strong>deterministic</strong> algorithm.</li>
+<li><strong><span class="math inline">BPP</span></strong> if <span class="math inline">x</span> is solvable by a polynomial <strong>probabilistic</strong> algorithm.</li>
+<li><strong><span class="math inline">BQP</span></strong> if <span class="math inline">x</span> is solvable by a polynomial deterministic algorithm on a <strong>quantum</strong> computer.</li>
+<li><strong><span class="math inline">NP</span></strong> if <span class="math inline">x</span> is <strong>verifiable</strong> by a polynomial deterministic algorithm.</li>
+</ul>
+<figure>
+<img src="./imgs/complexities.png" id="fig:complexities" alt="" /><figcaption>Figure 5: Known relations of complexities</figcaption>
+</figure>
+<p>It is conjectured that <span class="math inline">P = BPP</span> and Discrte Logarithm Problem as well as Factorization do not lie in <span class="math inline">NP ∩ BPP</span>.</p>
 <h1 data-number="5" id="three-types-of-security" data-number="5"><span class="header-section-number">5</span> Three types of security</h1>
 <blockquote>
 <p>Three types of security. Perfect secrecy: definition, examples, equivalent formulations (with proof). Perfect secrecy: Shannon’s Theorem (with proof).</p>
@@ -572,6 +648,9 @@ Sec. <a href="#sec:symmetric-cs">3</a>: If the given key of a Vigenère Cipher 
 </ul>
 <h2 class="unnumbered" data-number="" id="references" class="unnumbered" data-number="">References</h2>
 <div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-Arora2009">
+<p>Arora, Sanjeev, and Boaz Barak. 2009. <em>Computational Complexity</em>. Cambridge University Press, Cambridge. <a href="https://doi.org/10.1017/CBO9780511804090">https://doi.org/10.1017/CBO9780511804090</a>.</p>
+</div>
 <div id="ref-Arzhantseva2019">
 <p>Arzhantseva, Goulnara. 2019. “Exam Questions.” <a href="https://www.mat.univie.ac.at/~gagt/crypto2019/ExamQuestions.pdf">https://www.mat.univie.ac.at/~gagt/crypto2019/ExamQuestions.pdf</a>.</p>
 </div>

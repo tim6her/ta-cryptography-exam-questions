@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="517.63434"
+   height="413.87427"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
+   sodipodi:docname="complexities.svg">
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:window-height="994"
+     inkscape:window-width="1680"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:zoom="1.4784314"
+     inkscape:cx="336.97039"
+     inkscape:cy="-819.44958"
+     inkscape:window-x="0"
+     inkscape:window-y="-22"
+     inkscape:current-layer="g2793"
+     showgrid="false"
+     inkscape:window-maximized="0" />
+  <defs
+     id="defs5" />
+  <g
+     transform="translate(43.60953,80.44188)"
+     id="g2793">
+    <g
+       id="g2792"
+       transform="translate(12.48938,0)">
+      <rect
+         width="378.07727"
+         height="283.78668"
+         rx="45.198414"
+         ry="45.198414"
+         x="13.679629"
+         y="10.981215"
+         style="fill:#0012ff;fill-opacity:0.1604938;fill-rule:evenodd;stroke:black;stroke-width:3.50012946;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect2776" />
+      <text
+         x="202.1167"
+         y="58.087303"
+         style="font-style:normal;font-weight:normal;font-size:12px;line-height:0%;font-family:Arial;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="text2760"
+         xml:space="preserve"><tspan
+           x="202.1167"
+           y="58.087303"
+           style="font-size:32px"
+           id="tspan2762">NP problems</tspan></text>
+    </g>
+    <g
+       transform="translate(93.15923,110.2412)"
+       id="g2778">
+      <path
+         d="M 396.66667,122.77778 C 396.66667,182.01689 314.21244,230.03968 212.5,230.03968 C 110.78755,230.03968 28.333327,182.01689 28.333328,122.77778 C 28.333327,63.538668 110.78755,15.515879 212.5,15.515879 C 314.21244,15.515879 396.66667,63.538668 396.66667,122.77778 L 396.66667,122.77778 z "
+         transform="matrix(0.539339,0,0,0.34254,7.438878,73.70833)"
+         style="opacity:1;fill:#00ff1e;fill-opacity:0.1604938;fill-rule:evenodd;stroke:black;stroke-width:3.125;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path2772" />
+      <text
+         x="121.58553"
+         y="124.21385"
+         style="font-style:normal;font-weight:normal;font-size:12px;line-height:0%;font-family:Arial;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="text2764"
+         xml:space="preserve"><tspan
+           x="121.58553"
+           y="124.21385"
+           style="font-size:24px"
+           id="tspan2766">P problems</tspan></text>
+    </g>
+    <g
+       transform="translate(-46.25569,-67.64104)"
+       id="g2783">
+      <path
+         d="M 396.66667,122.77778 C 396.66667,182.01689 314.21244,230.03968 212.5,230.03968 C 110.78755,230.03968 28.333327,182.01689 28.333328,122.77778 C 28.333327,63.538668 110.78755,15.515879 212.5,15.515879 C 314.21244,15.515879 396.66667,63.538668 396.66667,122.77778 L 396.66667,122.77778 z "
+         transform="matrix(0.539339,0,0,0.34254,146.8538,137.9927)"
+         style="opacity:1;fill:#ff2400;fill-opacity:0.1604938;fill-rule:evenodd;stroke:black;stroke-width:3.125;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="path2774" />
+      <text
+         x="261.05319"
+         y="186.40056"
+         style="font-style:normal;font-weight:normal;font-size:12px;line-height:0%;font-family:Arial;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="text2768"
+         xml:space="preserve"><tspan
+           x="261.05319"
+           y="186.40056"
+           style="font-size:24px"
+           id="tspan2770">NP complete</tspan></text>
+    </g>
+    <g
+       id="g2787">
+      <rect
+         width="514.01923"
+         height="410.25916"
+         rx="45.198414"
+         ry="45.198414"
+         x="-41.801964"
+         y="-78.634315"
+         style="fill:none;fill-opacity:0.1604938;fill-rule:evenodd;stroke:black;stroke-width:3.61512351;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1885" />
+      <text
+         x="214.59045"
+         y="-30.322674"
+         style="font-style:normal;font-weight:normal;font-size:12px;line-height:0%;font-family:Arial;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="text2772"
+         xml:space="preserve"><tspan
+           x="214.59045"
+           y="-30.322674"
+           style="font-size:32px"
+           id="tspan2774">PSPACE problems</tspan></text>
+    </g>
+    <path
+       id="path2778"
+       style="fill:none;fill-opacity:0.1604938;fill-rule:evenodd;stroke:#000000;stroke-width:2.75565171;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:11.02260786, 11.02260786;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 460.54395,219.53871 c 0,35.60257 -106.68859,64.46414 -238.29558,64.46414 -131.607018,0 -238.295581,-28.86157 -238.295581,-64.46414 0,-35.60256 106.688563,-64.46414 238.295581,-64.46414 131.60699,0 238.29558,28.86158 238.29558,64.46414 z"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       id="text2780"
+       style="font-style:normal;font-weight:normal;font-size:12px;line-height:0%;font-family:Arial;text-align:center;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0"
+       y="216.3813"
+       x="359.54547"><tspan
+         id="tspan2782"
+         style="font-size:24px;stroke:#ffffff;stroke-opacity:0"
+         y="216.3813"
+         x="359.54547">BQP</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="64.613274"
+       y="216.41647"
+       id="text836"><tspan
+         sodipodi:role="line"
+         id="tspan834"
+         x="64.613274"
+         y="216.41647"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.33333333">DLP</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="168.10133"
+       y="179.89128"
+       id="text840"><tspan
+         sodipodi:role="line"
+         id="tspan838"
+         x="168.10133"
+         y="179.89128"
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Italic';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:0.33333333">Factorization</tspan></text>
+  </g>
+</svg>

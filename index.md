@@ -218,6 +218,102 @@ test, index of coincidence).
 > Computational complexity of basic mathematical operations and of the
 > exhaustive key search attack. Complexity classes of algorithms.
 
+## Turing Machines
+
+### Deterministic Turing machines
+
+$k$-tape Turing machine is a triple $M = (A,Q,τ)$ satisfying:
+
+*  $A$ is a finite **alphabet** that the $k$ tapes contain:
+   $A = \lbrace{\square, \vartriangleright, 0, 1}\rbrace$;
+*  $Q$ is a finite set of **states** that includes $q_{start}, q_{halt} ∈ Q$;
+*  $τ: Q × A^k → Q × A^{k−1} × \lbrace{L,S,R}\rbrace^k$ is the
+   **transition function** of $M$.
+
+*Tape* is function $ℕ → A$.
+
+First tape is **input** tape (read-only), second to $k-1$-st tape are **work**
+tapes, $k$-th tape is **output** tape.
+
+$\square$ is the **blank** symbol, $\vartriangleright$ is the **start** symbol
+
+$q_{start}, q_{halt}$ are the **start** and **halting** states
+
+A **register** contains a current state
+
+A **tape head** reads/write symbols, moves Left, Right or Stays
+
+Explain these notions using @fig:turing.
+
+![A Turing machine with 3 tapes [@Arora2009]](./imgs/turing.png){#fig:turing}
+
+### Probabilistic Turing machine
+
+A Turing machine that may choose at every step a move at random according to a
+probability distribution.
+
+Note that such a Turing machine is thus **non-deterministic**.
+
+A probabilistic Turing machine $M$ computes a function
+$f: \lbrace{0, 1}\rbrace^* → \lbrace{0, 1}\rbrace^*$ if
+$$P[f(x) = M(x)] ≥ ⅔
+$$
+
+## Running time
+
+$M$ computes $f: \lbrace{0, 1}\rbrace^* → \lbrace{0, 1}\rbrace^*$ in
+$T(n)$-time, if for every input $x ∈ \lbrace{0, 1}\rbrace^*$, $M$ halts after at
+most $T(|n|)$ steps with output $f(x)$.
+
+### Running times of arithmetic operations
+
+| Operation                                | Complexity |
+| ---------------------------------------- | ---------- |
+| Addition of two $n$-bit numbers          | $O(n)$     |
+| Multiplication of two $n$-bit numbers    | $O(n^2)$   |
+| Raising a number to an $n$-bit power     | $O(n^3)$   |
+| Exhaustive key search for an $n$-bit key | $O(2^n)$   |
+
+## Decidablity and Verifiability
+
+### Decidablity
+
+A language $L ⊂ \lbrace{0, 1}\rbrace^*$ is **decidable** if there exists a
+deterministic Turing machine computing
+$$χ_{L}(x) := \begin{cases}
+1 & \text{if } x ∈ L \\
+0 & \text{if } x \not\in L
+\end{cases}.
+$$
+
+### Verifiability
+
+A language $L ⊂ \lbrace{0, 1}\rbrace^*$ is **recursively enumerable** if there
+exists a deterministic Turing machine computing a function
+$$ν_{L}: \lbrace{0, 1}\rbrace^* \times \lbrace{0, 1}\rbrace^* →
+\lbrace{0, 1}\rbrace,
+$$
+with the property that
+$$x ∈ L \quad ⇔ \quad ∃ c ∈ \lbrace{0, 1}\rbrace^*: ν_{L}(x, c) = 1.$$
+We call $c$ a **certificate** for $x$.
+
+**Note:** Definiton in C2 is wrong!
+
+## Complexity classes
+
+A problem instance $x$ lies in the **complexity class**
+
+*  **$P$** if $x$ is solvable by a polynomial **deterministic** algorithm.
+*  **$BPP$** if $x$ is solvable by a polynomial **probabilistic** algorithm.
+*  **$BQP$** if $x$ is solvable by a polynomial deterministic algorithm on
+     a **quantum** computer.
+*  **$NP$** if $x$ is **verifiable** by a polynomial deterministic algorithm.
+
+![Known relations of complexities](./imgs/complexities.png){#fig:complexities}
+
+It is conjectured that $P = BPP$ and Discrte Logarithm Problem as well as
+Factorization do not lie in $NP ∩ BPP$.
+
 # Three types of security
 
 > Three types of security. Perfect secrecy: definition, examples, equivalent
