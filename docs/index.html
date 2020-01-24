@@ -335,6 +335,90 @@ D_k(c_1, …, c_n) &amp;= (c_1 - k_{0 \mod l}, …, c_n - k_{n \mod l}).
 <blockquote>
 <p>Three types of security. Perfect secrecy: definition, examples, equivalent formulations (with proof). Perfect secrecy: Shannon’s Theorem (with proof).</p>
 </blockquote>
+<h2 data-number="5.1" id="types-of-security" data-number="5.1"><span class="header-section-number">5.1</span> Types of security</h2>
+<ul>
+<li><strong>Computational security:</strong> computational complexity is high.</li>
+<li><strong>Provable security:</strong> breaking the cryptosystem would solve a problem known to be hard.</li>
+<li><strong>Unconditional security:</strong> breaking is not possible even if computational resources are unlimited.</li>
+</ul>
+<h2 data-number="5.2" id="perfect-secrecy" data-number="5.2"><span class="header-section-number">5.2</span> Perfect secrecy</h2>
+<p>A cryptosystem has <strong>perfect secrecy</strong> if seeing the ciphertext gives not extra information about the plaintext.</p>
+<p>A cryptosystem with perfect secrecy is <strong>unconditionally secure</strong> against a ciphertext only attack.</p>
+<p>Let <span class="math inline">(\mathcal{P, C, K, E, D})</span> be a cryptosystem and probability distributions are given on <span class="math inline">\mathcal{P}</span> and <span class="math inline">\mathcal{K}</span>:</p>
+<ul>
+<li><span class="math inline">Pr[\mathbf{p} = p]</span> denotes the probability that a plaintext <span class="math inline">p ∈ \mathcal{P}</span> occurs,</li>
+<li><span class="math inline">Pr[\mathbf{k} = k]</span> denotes the probability that a key <span class="math inline">k ∈ \mathcal{K}</span> is chosen.</li>
+</ul>
+<p>Analogously, <span class="math inline">Pr[\mathbf{c} = c]</span> denotes the probability that a ciphertext <span class="math inline">c ∈ \mathcal{C}</span> is transmitted.</p>
+<h3 data-number="5.2.1" id="assumptions-1" data-number="5.2.1"><span class="header-section-number">5.2.1</span> Assumptions</h3>
+<ul>
+<li>the key and the plaintext are independent random variables;</li>
+<li>each key is used for only one encryption.</li>
+</ul>
+<h3 data-number="5.2.2" id="propability-distribution-on-mathcalc" data-number="5.2.2"><span class="header-section-number">5.2.2</span> Propability distribution on <span class="math inline">\mathcal{C}</span></h3>
+<p>By assumption we have for all <span class="math inline">c ∈ \mathcal{C}</span> that <span class="math display">Pr[\mathbf{c} = c] = \sum_{k \text{ with } c ∈ C(k)}
+Pr[\mathbf[k] = k] Pr[\mathbf{p} = D_k{c}]
+</span> where <span class="math inline">C(k) := \lbrace{E_k(p) : p ∈ \mathcal{P}}\rbrace</span>. This yields <span class="math display">Pr[\mathbf{c} = c \mid \mathbf{p} = p] =
+\sum_{k \text{ with } c = D_k(p)} Pr[\mathbf{k} = k]
+</span> Bayes’ theorem implies (if <span class="math inline">Pr[\mathbf{c} = c] &gt; 0</span>) that <span class="math display">Pr[\mathbf{p} = p \mid \mathbf{c} = c] =
+\frac{Pr[\mathbf{p} = p] \; Pr[\mathbf{c} = c \mid \mathbf{p} = p]}
+     {Pr[\mathbf{c} = c]}.
+</span></p>
+<h3 data-number="5.2.3" id="definition" data-number="5.2.3"><span class="header-section-number">5.2.3</span> Definition</h3>
+<p>A cryptosystem has <strong>perfect secrecy</strong> if <span class="math inline">Pr[\mathbf{p} = p \mid \mathbf{c} = c] = Pr[\mathbf{p} = p]</span> for all <span class="math inline">p ∈ \mathcal{P},c ∈ \mathcal{C}</span>.</p>
+<h3 data-number="5.2.4" id="equivalent-formulations" data-number="5.2.4"><span class="header-section-number">5.2.4</span> Equivalent formulations</h3>
+<p>TFAE:</p>
+<ol type="1">
+<li><span class="math inline">(\mathcal{P, C, K, E, D})</span> has perfect secrecy;</li>
+<li>random variables <span class="math inline">\mathcal{p}</span> and <span class="math inline">\mathcal{c}</span> are independent;</li>
+<li><span class="math inline">Pr[\mathbf{c} = c \mid \mathbf{p} = p] = Pr[\mathbf{c} = c]</span>;</li>
+<li><span class="math inline">∀ p_1, p_2 ∈ \mathcal{P}: Pr[\mathbf{c} = c \mid \mathbf{p}=p_1] = Pr[\mathbf{c} = c \mid \mathbf{p}=p_2]</span></li>
+</ol>
+<p>The distribution of <span class="math inline">\mathcal{P}</span> is irrelevant!</p>
+<p><em>Proof:</em> WLOG, we assume that <span class="math inline">Pr[\mathbf{c} = c], Pr[\mathbf{p} = p] &gt; 0</span> for all <span class="math inline">c ∈ \mathcal{C}, p ∈ \mathcal{P}</span>. Otherwise, restrict <span class="math inline">\mathcal{C}</span> or <span class="math inline">\mathcal{P}</span>.</p>
+<p>(<span class="math inline">1 ⇒ 2</span>): <span class="math display">Pr[\mathbf{p} = p ∩ \mathbf{c} = c] =
+Pr[\mathbf{p} = p \mid \mathbf{c} = c] Pr[\mathbf{c} = c] =
+Pr[\mathbf{p} = p] Pr[\mathbf{c} = c]</span></p>
+<p>(<span class="math inline">2 ⇒ 3</span>): <span class="math display">Pr[\mathbf{c} = c \mid \mathbf{p} = p] =
+\frac{Pr[\mathbf{p} = p ∩ \mathbf{c} = c]}{Pr[\mathbf{p} = p]} =
+\frac{Pr[\mathbf{p} = p] Pr[\mathbf{c} = c]}{Pr[\mathbf{p} = p]} =
+Pr[\mathbf{c} = c]
+</span></p>
+<p>(<span class="math inline">3 ⇒ 4</span>): <span class="math inline">∀ c ∈ \mathcal{C}</span> and <span class="math inline">∀ p_1, p_2 ∈ \mathcal{P}</span> we have <span class="math display">Pr[\mathbf{c} = c \mid \mathbf{p}=p_1] = Pr[\mathbf{c} = c] =
+Pr[\mathbf{c} = c \mid \mathbf{p}=p_2].
+</span></p>
+<p>(<span class="math inline">4 ⇒ 1</span>): By Bayes’ Theorem we have <span class="math display">\begin{aligned}
+\frac{Pr[\mathbf{c} = c] Pr[\mathbf{p_1} = p \mid \mathbf{c} = c]}
+        {Pr[\mathbf{p} = p_1]} &amp;=
+        Pr[\mathbf{c} = c \mid \mathbf{p}=p_1] =\\
+ &amp;= Pr[\mathbf{c} = c \mid \mathbf{p}=p_2] = \\
+ &amp;= \frac{Pr[\mathbf{c} = c] Pr[\mathbf{p_2} = p \mid \mathbf{c} = c]}
+         {Pr[\mathbf{p} = p_2]}
+\end{aligned}
+</span> Thus, there exists a constant <span class="math inline">λ ∈ ℝ</span> such that <span class="math display">Pr[\mathbf{p} = p \mid \mathbf{c} = c] = λ Pr[\mathbf{p} = p].
+</span> We prove <span class="math inline">λ = 1</span> and are finished <span class="math display">\begin{aligned}
+Pr[\mathbf{p} = p]  &amp;=
+\sum_{c ∈ \mathcal{C}} Pr[\mathbf{p} = p \mid \mathbf{c} = c]
+                       Pr[\mathbf{c} = c] =\\
+  &amp;= \sum_{c ∈ \mathcal{C}} Pr[\mathbf{p} = p] Pr[\mathbf{c} = c] = \\
+  &amp;= λ Pr[\mathbf{p} = p]
+  \underbrace{\sum_{c ∈ \mathcal{C}} Pr[\mathbf{c} = c]}_{=1}.
+\end{aligned}
+</span></p>
+<h3 data-number="5.2.5" id="example-one-time-pad" data-number="5.2.5"><span class="header-section-number">5.2.5</span> Example: One-time pad</h3>
+<p>Let <span class="math inline">\mathcal{P = C = K} = (ℤ / 2ℤ)^n</span> and <span class="math inline">E_k(p) = k + p \mod 2</span>.</p>
+<p>The key is <span class="math inline">k</span> is chosen at random and may never be reused.</p>
+<p>The One-time pad has perfect secrecy as</p>
+<p><span class="math display">∀ p ∈ \mathcal{P}, ∀ c ∈ \mathcal{C}: Pr[c \mid p] = \frac{1}{|\mathcal{K}|}</span></p>
+<h3 data-number="5.2.6" id="shannons-theorem" data-number="5.2.6"><span class="header-section-number">5.2.6</span> Shannon’s theorem</h3>
+<p>Let <span class="math inline">(\mathcal{P, C, K, E, D})</span> be a cryptosystem with <span class="math inline">|\mathcal{K}| = |\mathcal{C}| = |\mathcal{P}|</span>. Then it has perfect secrecy if and only if every key is used with equal probability <span class="math inline">1/|\mathcal{K}|</span>, and <span class="math inline">∀p ∈ \mathcal{P}, ∀c ∈ \mathcal{C}</span>, there is a unique key <span class="math inline">k ∈ \mathcal{K}</span> such that <span class="math inline">E_k(p) = c</span>.</p>
+<p><em>Proof:</em> (<span class="math inline">⇒</span>): We can assume that <span class="math inline">∀p ∈ \mathcal{P}: Pr [p] &gt; 0, ∀ c ∈ \mathcal{C} Pr [c] &gt; 0</span>. We have <span class="math inline">Pr [c | p] = Pr [c] &gt; 0</span>, that is, <span class="math inline">∀ c ∈ \mathcal{C}</span> there is at least one <span class="math inline">p ∈ \mathcal{P}</span> with <span class="math inline">E_k(p) = c</span>.</p>
+<p>Therefore, <span class="math inline">|\mathcal{C}| = |\lbrace{E_k(p) \mid k ∈ \mathcal{K}}\rbrace| ≤ |K|</span> and, as <span class="math inline">|\mathcal{K}| = |\mathcal{C}|</span>, there is no distinct <span class="math inline">k_1 ≠ k_2</span> with <span class="math inline">E_{k_1}(p) = E_{k_2}(p) = c</span>. That is, <span class="math inline">∀p ∈ \mathcal{P}, ∀c ∈ \mathcal{C}</span>, there is a unique key <span class="math inline">k ∈ \mathcal{K}</span> such that <span class="math inline">E_k(p)=c</span>.</p>
+<p>(Analogously, <span class="math inline">|\mathcal{P}| ≤ |\mathcal{K}|</span>.)</p>
+<p>Let <span class="math inline">n = |\mathcal{K}|, \mathcal{P} = \lbrace{p_1,...,p_n}\rbrace</span>, and <span class="math inline">c ∈ \mathcal{C}</span> be fixed. Let <span class="math inline">k_i ∈ \mathcal{K}</span> be so that <span class="math inline">E_{k_i} (p_i ) = c</span>. Using Bayes’ theorem: <span class="math display">Pr[p_i | c] =
+\frac{Pr[c | p_i]Pr[pi]}{Pr[c]} = \frac{Pr[k_i]Pr[p_i]}{Pr[c]}. </span></p>
+<p>Perfect secrecy implies that <span class="math inline">∀ i: Pr[k_i] = Pr[c]</span>, all keys are used with equal probability. Since there are <span class="math inline">|\mathcal{K}|</span> keys, the probability is <span class="math inline">1/|\mathcal{K}|</span>.</p>
+<p>(<span class="math inline">⇐</span>) <span class="math inline">∀ p ∈ \mathcal{P}</span>, <span class="math inline">∀ c ∈ \mathcal{C}: Pr[c|p]=1/|K|</span>, hence, we conclude by the Proposition.</p>
 <h1 data-number="6" id="sec:rsa" data-number="6"><span class="header-section-number">6</span> RSA cryptosystem</h1>
 <blockquote>
 <p>RSA cryptosystem: definition, examples, correctness (encryption and decryption are inverse operations). Parameter generation, its complexity. Main attacks.</p>
@@ -384,7 +468,7 @@ D_k(c_1, …, c_n) &amp;= (c_1 - k_{0 \mod l}, …, c_n - k_{n \mod l}).
 <p>Digital Signature Scheme. RSA signature algorithm. Attacks: definitions and examples.</p>
 </blockquote>
 <p>To ensure the <strong>non-repudiation</strong> of data</p>
-<h2 data-number="17.1" id="definition" data-number="17.1"><span class="header-section-number">17.1</span> Definition</h2>
+<h2 data-number="17.1" id="definition-1" data-number="17.1"><span class="header-section-number">17.1</span> Definition</h2>
 <p><strong>Signature scheme</strong> is a <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P , A, K, S , V})</span>, satisfying:</p>
 <ul>
 <li><span class="math inline">\mathcal{P}</span> is a finite set of possible <strong>messages</strong>;</li>
@@ -463,7 +547,7 @@ ver_k(x, y) = \mathtt{true} &amp; ⇔ y = sig_k(x) = x^d \mod n\\
 <p>DSS with hashing. Hash functions from block ciphers: definition and example, with proof (the example where <span class="math inline">(x, y) → a^x b^y</span>).</p>
 </blockquote>
 <p><em>DSS + Hashing = Hash-then-sign</em></p>
-<h2 data-number="18.1" id="definition-1" data-number="18.1"><span class="header-section-number">18.1</span> Definition</h2>
+<h2 data-number="18.1" id="definition-2" data-number="18.1"><span class="header-section-number">18.1</span> Definition</h2>
 <p><strong>DSS with hashing</strong> is a DSS <span class="math inline">5</span>-tuple <span class="math inline">(\mathcal{P , A, K, S , V})</span> such that:</p>
 <ul>
 <li><span class="math inline">\mathcal{P} = \lbrace{0,1}\rbrace^∗</span> and</li>
@@ -474,7 +558,7 @@ ver_k(x, y) = \mathtt{true} &amp; ⇔ y = sig_k(x) = x^d \mod n\\
 </ul>
 <p>To avoid the attacks <span class="math inline">h</span> must be a one-way <strong>non-multiplicative</strong> function. <span class="math inline">h</span> is <strong>collision resistant</strong> if it is infeasible to find <span class="math inline">x_1 ≠ x_2</span> with <span class="math inline">h(x_1) = h(x_2)</span>.</p>
 <p>A <strong>block cipher</strong> encodes blocks of bits at a time (e.g. Vigenère, Feistel).</p>
-<h2 data-number="18.2" id="definition-2" data-number="18.2"><span class="header-section-number">18.2</span> Definition</h2>
+<h2 data-number="18.2" id="definition-3" data-number="18.2"><span class="header-section-number">18.2</span> Definition</h2>
 <p><strong>Hash functions from block ciphers:</strong></p>
 <p>Let <span class="math inline">\mathcal{P = K = C} = \lbrace{0, 1}\rbrace^l</span> for some <span class="math inline">l ∈ ℕ</span> and <span class="math inline">E</span> be a block cipher: <span class="math display">E : \mathcal{P × K → C}, \quad (x, e) ↦ E_e(x).</span></p>
 <p>Define <span class="math inline">h(x_1,...,x_r) ∈ \lbrace{0,1}\rbrace^l</span> with <span class="math inline">x_i ∈ \lbrace{0,1}\rbrace^l</span> recursively (on <span class="math inline">r</span>), by <span class="math inline">h(∅) = 0</span>, and <span class="math display">h(x_1,...,x_r) = E_{e_h}(x_r) + e_h,
@@ -537,7 +621,7 @@ ver_k(x, y) = \mathtt{true} &amp; ⇔ y = sig_k(x) = x^d \mod n\\
 <blockquote>
 <p>ElGamal variant of DSS: definition and correctness. Security assumptions. Example of misuse (with proof).</p>
 </blockquote>
-<h2 data-number="20.1" id="definition-3" data-number="20.1"><span class="header-section-number">20.1</span> Definition</h2>
+<h2 data-number="20.1" id="definition-4" data-number="20.1"><span class="header-section-number">20.1</span> Definition</h2>
 <ul>
 <li><p>Let <span class="math inline">p</span> be a prime and <span class="math inline">g</span> a primitive element <span class="math inline">\mod p</span>.</p></li>
 <li><p>Let <span class="math inline">\mathcal{P} = (ℤ / pℤ)^*, \mathcal{A} = (ℤ / pℤ)^* × (ℤ / (p − 1)ℤ)</span> and define <span class="math display">\mathcal{K} = \lbrace{(p, g, d, y) : y = g^d \mod p}\rbrace.</span></p></li>
@@ -570,7 +654,7 @@ y&#39; := \frac{y_2 - z_2}{s}, \quad p&#39; := \frac{p - 1}{s}.
 <blockquote>
 <p>ElGamal variant of DSS: example of misuse (with proof). ECDSA: definition and correctness.</p>
 </blockquote>
-<h2 data-number="21.1" id="definition-4" data-number="21.1"><span class="header-section-number">21.1</span> Definition</h2>
+<h2 data-number="21.1" id="definition-5" data-number="21.1"><span class="header-section-number">21.1</span> Definition</h2>
 <ul>
 <li><p>Let <span class="math inline">p</span> be a prime and <span class="math inline">g</span> a primitive element <span class="math inline">\mod p</span>.</p></li>
 <li><p>Let <span class="math inline">\mathcal{P} = (ℤ / pℤ)^*, \mathcal{A} = (ℤ / pℤ)^* × (ℤ / (p − 1)ℤ)</span> and define <span class="math display">\mathcal{K} = \lbrace{(p, g, d, y) : y = g^d \mod p}\rbrace.</span></p></li>

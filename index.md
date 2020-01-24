@@ -319,6 +319,161 @@ Factorization do not lie in $NP ∩ BPP$.
 > Three types of security. Perfect secrecy: definition, examples, equivalent
 > formulations (with proof). Perfect secrecy: Shannon’s Theorem (with proof).
 
+## Types of security
+
+*  **Computational security:** computational complexity is high.
+*  **Provable security:** breaking the cryptosystem would solve a problem known
+   to be hard.
+*  **Unconditional security:** breaking is not possible even if computational
+   resources are unlimited.
+
+## Perfect secrecy
+
+A cryptosystem has **perfect secrecy** if seeing the ciphertext gives not extra
+information about the plaintext.
+
+A cryptosystem with perfect secrecy is **unconditionally secure** against a
+ciphertext only attack.
+
+Let $(\mathcal{P, C, K, E, D})$ be a cryptosystem and probability distributions
+are given on $\mathcal{P}$ and $\mathcal{K}$:
+
+* $Pr[\mathbf{p} = p]$ denotes the probability that a plaintext $p ∈
+  \mathcal{P}$ occurs,
+* $Pr[\mathbf{k} = k]$ denotes the probability that a key $k ∈ \mathcal{K}$ is
+  chosen.
+
+Analogously, $Pr[\mathbf{c} = c]$ denotes the probability that a ciphertext
+$c ∈ \mathcal{C}$ is transmitted.
+
+### Assumptions
+
+*  the key and the plaintext are independent random variables;
+*  each key is used for only one encryption.
+
+### Propability distribution on $\mathcal{C}$
+
+By assumption we have for all $c ∈ \mathcal{C}$ that
+$$Pr[\mathbf{c} = c] = \sum_{k \text{ with } c ∈ C(k)}
+Pr[\mathbf[k] = k] Pr[\mathbf{p} = D_k{c}]
+$$
+where $C(k) := \lbrace{E_k(p) : p ∈ \mathcal{P}}\rbrace$. This yields
+$$Pr[\mathbf{c} = c \mid \mathbf{p} = p] =
+\sum_{k \text{ with } c = D_k(p)} Pr[\mathbf{k} = k]
+$$
+Bayes' theorem implies (if $Pr[\mathbf{c} = c] > 0$) that
+$$Pr[\mathbf{p} = p \mid \mathbf{c} = c] =
+\frac{Pr[\mathbf{p} = p] \; Pr[\mathbf{c} = c \mid \mathbf{p} = p]}
+     {Pr[\mathbf{c} = c]}.
+$$
+
+### Definition
+
+A cryptosystem has **perfect secrecy** if
+$Pr[\mathbf{p} = p \mid \mathbf{c} = c] = Pr[\mathbf{p} = p]$ for all
+$p ∈ \mathcal{P},c ∈ \mathcal{C}$.
+
+### Equivalent formulations
+
+TFAE:
+
+1. $(\mathcal{P, C, K, E, D})$ has perfect secrecy;
+2. random variables $\mathcal{p}$ and $\mathcal{c}$ are independent;
+3. $Pr[\mathbf{c} = c \mid \mathbf{p} = p] = Pr[\mathbf{c} = c]$;
+4. $∀ p_1, p_2 ∈ \mathcal{P}:
+   Pr[\mathbf{c} = c \mid \mathbf{p}=p_1] =
+   Pr[\mathbf{c} = c \mid \mathbf{p}=p_2]$
+
+The distribution of $\mathcal{P}$ is irrelevant!
+
+*Proof:* WLOG, we assume that $Pr[\mathbf{c} = c], Pr[\mathbf{p} = p] > 0$ for
+all $c ∈ \mathcal{C}, p ∈ \mathcal{P}$. Otherwise, restrict $\mathcal{C}$ or
+$\mathcal{P}$.
+
+($1 ⇒ 2$):
+$$Pr[\mathbf{p} = p ∩ \mathbf{c} = c] =
+Pr[\mathbf{p} = p \mid \mathbf{c} = c] Pr[\mathbf{c} = c] =
+Pr[\mathbf{p} = p] Pr[\mathbf{c} = c]$$
+
+($2 ⇒ 3$):
+$$Pr[\mathbf{c} = c \mid \mathbf{p} = p] =
+\frac{Pr[\mathbf{p} = p ∩ \mathbf{c} = c]}{Pr[\mathbf{p} = p]} =
+\frac{Pr[\mathbf{p} = p] Pr[\mathbf{c} = c]}{Pr[\mathbf{p} = p]} =
+Pr[\mathbf{c} = c]
+$$
+
+($3 ⇒ 4$): $∀ c ∈ \mathcal{C}$ and $∀ p_1, p_2 ∈ \mathcal{P}$ we have
+$$Pr[\mathbf{c} = c \mid \mathbf{p}=p_1] = Pr[\mathbf{c} = c] =
+Pr[\mathbf{c} = c \mid \mathbf{p}=p_2].
+$$
+
+($4 ⇒ 1$): By Bayes' Theorem we have
+$$\begin{aligned}
+\frac{Pr[\mathbf{c} = c] Pr[\mathbf{p_1} = p \mid \mathbf{c} = c]}
+        {Pr[\mathbf{p} = p_1]} &=
+        Pr[\mathbf{c} = c \mid \mathbf{p}=p_1] =\\
+ &= Pr[\mathbf{c} = c \mid \mathbf{p}=p_2] = \\
+ &= \frac{Pr[\mathbf{c} = c] Pr[\mathbf{p_2} = p \mid \mathbf{c} = c]}
+         {Pr[\mathbf{p} = p_2]}
+\end{aligned}
+$$
+Thus, there exists a constant $λ ∈ ℝ$ such that
+$$Pr[\mathbf{p} = p \mid \mathbf{c} = c] = λ Pr[\mathbf{p} = p].
+$$
+We prove $λ = 1$ and are finished
+$$\begin{aligned}
+Pr[\mathbf{p} = p]  &=
+\sum_{c ∈ \mathcal{C}} Pr[\mathbf{p} = p \mid \mathbf{c} = c]
+                       Pr[\mathbf{c} = c] =\\
+  &= \sum_{c ∈ \mathcal{C}} Pr[\mathbf{p} = p] Pr[\mathbf{c} = c] = \\
+  &= λ Pr[\mathbf{p} = p]
+  \underbrace{\sum_{c ∈ \mathcal{C}} Pr[\mathbf{c} = c]}_{=1}.
+\end{aligned}
+$$
+
+### Example: One-time pad
+
+Let $\mathcal{P = C = K} = (ℤ / 2ℤ)^n$ and $E_k(p) = k + p \mod 2$.
+
+The key is $k$ is chosen at random and may never be reused.
+
+The One-time pad has perfect secrecy as
+
+$$∀ p ∈ \mathcal{P}, ∀ c ∈ \mathcal{C}: Pr[c \mid p] = \frac{1}{|\mathcal{K}|}$$
+
+### Shannon's theorem
+
+Let $(\mathcal{P, C, K, E, D})$ be a cryptosystem with
+$|\mathcal{K}| = |\mathcal{C}| = |\mathcal{P}|$. Then it has perfect
+secrecy if and only if every key is used with equal probability
+$1/|\mathcal{K}|$, and $∀p ∈ \mathcal{P}, ∀c ∈ \mathcal{C}$, there is a unique
+key $k ∈ \mathcal{K}$ such that $E_k(p) = c$.
+
+*Proof:* ($⇒$): We can assume that
+$∀p ∈ \mathcal{P}: Pr [p] > 0, ∀ c ∈ \mathcal{C} Pr [c] > 0$. We have
+$Pr [c | p] = Pr [c] > 0$, that is, $∀ c ∈ \mathcal{C}$ there is at least one
+$p ∈ \mathcal{P}$ with $E_k(p) = c$.
+
+Therefore, $|\mathcal{C}| = |\lbrace{E_k(p) \mid k ∈ \mathcal{K}}\rbrace| ≤ |K|$
+and, as $|\mathcal{K}| = |\mathcal{C}|$, there is no distinct $k_1 ≠ k_2$ with
+$E_{k_1}(p) = E_{k_2}(p) = c$. That is, $∀p ∈ \mathcal{P}, ∀c ∈ \mathcal{C}$,
+there is a unique key $k ∈ \mathcal{K}$ such that $E_k(p)=c$.
+
+(Analogously, $|\mathcal{P}| ≤ |\mathcal{K}|$.)
+
+Let $n = |\mathcal{K}|, \mathcal{P} = \lbrace{p_1,...,p_n}\rbrace$, and
+$c ∈ \mathcal{C}$ be fixed. Let $k_i ∈ \mathcal{K}$ be so that
+$E_{k_i} (p_i ) = c$. Using Bayes' theorem:
+$$Pr[p_i | c] =
+\frac{Pr[c | p_i]Pr[pi]}{Pr[c]} = \frac{Pr[k_i]Pr[p_i]}{Pr[c]}. $$
+
+Perfect secrecy implies that $∀ i: Pr[k_i] = Pr[c]$, all keys are used with
+equal probability. Since there are $|\mathcal{K}|$ keys, the probability is
+$1/|\mathcal{K}|$.
+
+($⇐$) $∀ p ∈ \mathcal{P}$, $∀ c ∈ \mathcal{C}: Pr[c|p]=1/|K|$, hence, we
+conclude by the Proposition.
+
 # RSA cryptosystem{#sec:rsa}
 
 > RSA cryptosystem: definition, examples, correctness (encryption and decryption
