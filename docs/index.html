@@ -251,6 +251,11 @@ D_k(c_1, …, c_n) &amp;= (c_1 - k_{0 \mod l}, …, c_n - k_{n \mod l}).
 <p>The naive letter frequency analysis does not work, as the same letter is encrypted by different letters depending on its position.</p>
 <p>If the key length is known, the Vigenère Cipher can be broken, breaking a sequence of Caesar Ciphers in strict rotation.</p>
 <p>The key length can be guessed using simple analyses of the cipher text (Kasiski test, index of coincidence).</p>
+<blockquote>
+<p>If the given key of a Vigenère Cipher has repeated letters, does it make it any easier to break?</p>
+</blockquote>
+<p>In general no. Excluding keys with repeated letters would reduce the size of the keyspace. Thus, the exhaustive keysearch attack would be faster.</p>
+<p>If however, the repetition of letters yields a repetion of patterns, e.g. ‘BABABA’, then the effective key length is reduced.</p>
 <h1 data-number="4" id="computational-complexity" data-number="4"><span class="header-section-number">4</span> Computational complexity</h1>
 <blockquote>
 <p>Computational complexity of basic mathematical operations and of the exhaustive key search attack. Complexity classes of algorithms.</p>
@@ -564,6 +569,7 @@ ver_k(x, y) = \mathtt{true} &amp; ⇔ y = sig_k(x) = x^d \mod n\\
 <p>Define <span class="math inline">h(x_1,...,x_r) ∈ \lbrace{0,1}\rbrace^l</span> with <span class="math inline">x_i ∈ \lbrace{0,1}\rbrace^l</span> recursively (on <span class="math inline">r</span>), by <span class="math inline">h(∅) = 0</span>, and <span class="math display">h(x_1,...,x_r) = E_{e_h}(x_r) + e_h,
 \text{where } e_h = h(x_1,...,x_{r−1}).</span></p>
 <p>SHA-1 is an example of such a hash function.</p>
+<h2 data-number="18.3" id="example" data-number="18.3"><span class="header-section-number">18.3</span> Example</h2>
 <h1 data-number="19" id="dss-and-public-key-cryptosystems" data-number="19"><span class="header-section-number">19</span> DSS and Public-key cryptosystems</h1>
 <blockquote>
 <p>DSS and Public-key cryptosystem: sign-then-encrypt versus encrypt-versus-sign.</p>
@@ -727,7 +733,7 @@ s &amp;= r^{-1}(h(x) + dt) \mod q.
 <ul class="task-list">
 <li><input type="checkbox" disabled="" />
 Sec. <a href="#sec:dss-with-hashing">18</a>: Example where <span class="math inline">(x, y) → a^x b^y</span>.</li>
-<li><input type="checkbox" disabled="" />
+<li><input type="checkbox" disabled="" checked="" />
 Sec. <a href="#sec:symmetric-cs">3</a>: If the given key of a Vigenère Cipher has repeated letters, does it make it any easier to break?</li>
 </ul>
 <h2 class="unnumbered" data-number="" id="references" class="unnumbered" data-number="">References</h2>

@@ -213,6 +213,15 @@ sequence of Caesar Ciphers in strict rotation.
 The key length can be guessed using simple analyses of the cipher text (Kasiski
 test, index of coincidence).
 
+> If the given key of a Vigenère Cipher has repeated letters,
+> does it make it any easier to break?
+
+In general no. Excluding keys with repeated letters would reduce the size of the
+keyspace. Thus, the exhaustive keysearch attack would be faster.
+
+If however, the repetition of letters yields a repetion of patterns, e.g.
+‘BABABA’, then the effective key length is reduced.
+
 # Computational complexity
 
 > Computational complexity of basic mathematical operations and of the
@@ -669,6 +678,8 @@ $$h(x_1,...,x_r) = E_{e_h}(x_r) + e_h,
 
 SHA-1 is an example of such a hash function.
 
+## Example
+
 # DSS and Public-key cryptosystems
 
 > DSS and Public-key cryptosystem: sign-then-encrypt versus encrypt-versus-sign.
@@ -968,7 +979,7 @@ For $x ∈ \lbrace 0, 1\rbrace^*$ and $t, s ∈ (ℤ / qℤ)^*$, we compute
 # TODO-s:
 
 - [ ] @Sec:dss-with-hashing: Example where $(x, y) → a^x b^y$.
-- [ ] @Sec:symmetric-cs: If the given key of a Vigenère Cipher has repeated
+- [x] @Sec:symmetric-cs: If the given key of a Vigenère Cipher has repeated
   letters, does it make it any easier to break?
 
 ## References
